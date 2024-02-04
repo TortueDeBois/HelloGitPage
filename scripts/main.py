@@ -59,20 +59,21 @@ def draw_canvas(width, height) -> None:
     canvas.style["display"] = "block"
 
 def draw_square(ctx):
+    key = squareIndex
+    try:
+        image = document.createElement('img')
+        image.src = projectName + "\\assets\\square\\" + dictSquare[key]
     
-    image = document.createElement('img')
-    image.src = projectName + "\\assets\\square\\" + dictSquare[squareIndex]
-    
-    draw_image(ctx,image)
+        draw_image(ctx,image)
+    except KeyError:
+        print("Couldn't find a match for the key:", key)
 
 def draw_image(ctx, image):
     ctx.drawImage(image, 0, 0, 10, 10, 0, 0, width, height)
 
 def main():
     dictSquare = initDict("\\square\\")
-    print(len(dictSquare))
     dictTriangle = initDict("\\triangle\\")
-    print(len(dictTriangle))
     draw_canvas(width, height)
 
 main()
