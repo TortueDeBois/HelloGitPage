@@ -30,6 +30,7 @@ def initDict(path):
     for value in data:
         if path in value:
             dictTemp[i] = value.replace("\\"+path+"\\","")
+            print(dictSquare[i])
             i = i + 1
     return dictTemp
 
@@ -62,6 +63,8 @@ def draw_square(ctx):
     key = squareIndex
     image = document.createElement('img')
     image.src = projectName + "\\assets\\square\\" + dictSquare[key]
+
+    print(image.src)
 
     draw_image(ctx,image)
 
