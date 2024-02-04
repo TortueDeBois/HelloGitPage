@@ -1,0 +1,8 @@
+#preview{
+    width : 800px;
+    height : 800px;
+}
+.row{
+    display:flex;
+    flex-direction: row;
+}

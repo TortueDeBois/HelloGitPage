@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./styles/main.css">
+        <!-- This script tag bootstraps PyScript -->
+        <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+        <title>Hello</title>
+    </head>
+    <body>
+        <h1>Hello!</h1>
+        <div class="row">
+            <canvas id="preview" width="400" height="400"> your browser doesn't support canvas</canvas>
+            <img id="square">
+            <div>
+                <div>
+                    <h2>Lorem</h2>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti suscipit dolor dicta earum consequuntur modi eaque adipisci, provident aspernatur nihil minus? Iusto cupiditate quam quisquam itaque obcaecati, repudiandae veritatis labore, ex quaerat unde quae ducimus provident veniam optio ratione accusantium eveniet esse! Ipsam, reprehenderit? Deleniti illum sequi id nam veniam.</p>
+                </div>
+                <div class="row">
+                    <button id="squarePlus">square - 1</button>
+                    <p id="squareIndex">-1</p>
+                    <button id="squareMinus">square + 1</button>
+                </div>
+            </div>
+        </div>
+        <script type="py" src="./scripts/main.py"></script>
+    </body>
+</html>
