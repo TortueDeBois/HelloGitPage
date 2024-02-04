@@ -28,10 +28,11 @@ def initDict(path):
     dictTemp = {}
     i = 0
     for value in data:
+        print (value)
         if path in value:
             print(value)
             dictTemp[i] = value#.replace(path,"")
-            i += 1
+            i = i + 1
     return dictTemp
 
 
@@ -72,8 +73,8 @@ def draw_image(ctx, image):
     ctx.drawImage(image, 0, 0, 10, 10, 0, 0, width, height)
 
 def main():
-    dictSquare = initDict("\\square\\")
-    dictTriangle = initDict("\\triangle\\")
+    dictSquare = initDict("square")
+    dictTriangle = initDict("triangle")
     draw_canvas(width, height)
 
 main()
