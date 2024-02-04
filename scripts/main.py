@@ -28,10 +28,9 @@ def initDict(path):
     dictTemp = {}
     i = 0
     for value in data:
-        if path in value:
-            dictTemp[i] = value.replace("\\"+path+"\\","")
-            print(dictSquare[i])
-            i = i + 1
+        dictTemp[i] = value#.replace(path,"")
+        print(dictSquare[i])
+        i = i + 1
     return dictTemp
 
 
