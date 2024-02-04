@@ -72,5 +72,7 @@ def main():
     draw_canvas(width, height)
 
 dictSquare = initDict("\\square\\")
+print(len(dictSquare))
 dictTriangle = initDict("\\triangle\\")
+print(len(dictTriangle))
 main()
