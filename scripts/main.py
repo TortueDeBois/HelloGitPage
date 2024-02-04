@@ -69,8 +69,8 @@ def draw_image(ctx, image):
     ctx.drawImage(image, 0, 0, 10, 10, 0, 0, width, height)
 
 async def main():
-    dictSquare = initDict("\\sqaure\\")
-    dictTriangle = initDict("\\triangle\\")
     _ = await asyncio.gather(draw_canvas(width, height))
 
+dictSquare = initDict("\\sqaure\\")
+dictTriangle = initDict("\\triangle\\")
 asyncio.ensure_future(main())
