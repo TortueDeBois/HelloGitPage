@@ -62,7 +62,6 @@ def draw_square(ctx):
     key = squareIndex
     try:
         image = document.createElement('img')
-        print(len(dictSquare))
         print(dictSquare[key])
         image.src = projectName + "\\assets\\square\\" + dictSquare[key]
     
