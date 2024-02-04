@@ -47,7 +47,7 @@ def prepare_canvas(width: int, height: int, canvas: pydom.Element) -> Context2d:
 
     return ctx
 
-async def draw_canvas(width, height) -> None:
+def draw_canvas(width, height) -> None:
     canvas = pydom["canvas"][0]
 
     canvas.style["display"] = "none"
@@ -68,9 +68,9 @@ def draw_square(ctx):
 def draw_image(ctx, image):
     ctx.drawImage(image, 0, 0, 10, 10, 0, 0, width, height)
 
-async def main():
-    _ = await asyncio.gather(draw_canvas(width, height))
+def main():
+    draw_canvas(width, height)
 
 dictSquare = initDict("\\sqaure\\")
 dictTriangle = initDict("\\triangle\\")
-asyncio.ensure_future(main())
+main()
