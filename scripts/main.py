@@ -71,6 +71,6 @@ def draw_image(ctx, image):
 def main():
     draw_canvas(width, height)
 
-dictSquare = initDict("\\sqaure\\")
+dictSquare = initDict("\\square\\")
 dictTriangle = initDict("\\triangle\\")
 main()
