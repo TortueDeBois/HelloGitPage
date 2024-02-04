@@ -60,15 +60,12 @@ def draw_canvas(width, height) -> None:
 
 def draw_square(ctx):
     key = squareIndex
-    try:
-        image = document.createElement('img')
-        for f in dictSquare:
-            print(f)
-        image.src = projectName + "\\assets\\square\\" + dictSquare[key]
-    
-        draw_image(ctx,image)
-    except KeyError:
-        print("Couldn't find a match for the key:", key)
+    image = document.createElement('img')
+    for f in dictSquare:
+        print(f)
+    # image.src = projectName + "\\assets\\square\\" + dictSquare[key]
+
+    # draw_image(ctx,image)
 
 def draw_image(ctx, image):
     ctx.drawImage(image, 0, 0, 10, 10, 0, 0, width, height)
