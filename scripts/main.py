@@ -47,12 +47,6 @@ def prepare_canvas(width: int, height: int, canvas: pydom.Element) -> Context2d:
 
     return ctx
 
-def draw_image(ctx: Context2d, image: np.array) -> None:
-    data = Uint8ClampedArray.new(to_js(image.tobytes()))
-    width, height, _ = image.shape
-    image_data = ImageData.new(data, width, height)
-    ctx.putImageData(image_data, 0, 0)
-
 async def draw_canvas(width, height) -> None:
     canvas = pydom["canvas"][0]
 
@@ -68,7 +62,11 @@ def draw_square(ctx):
     
     image = document.createElement('img')
     image.src = projectName + "\\assets\\square\\" + dictSquare[squareIndex]
-    draw_image(ctx, image)
+    
+    draw_image(ctx,image)
+
+def draw_image(ctx, image):
+    ctx.drawImage(image, 0, 0, 10, 10, 0, 0, width, height)
 
 async def main():
     dictSquare = initDict("\\sqaure\\")
