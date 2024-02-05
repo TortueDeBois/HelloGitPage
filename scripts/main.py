@@ -54,7 +54,7 @@ def draw_canvas(width, height) -> None:
     ctx = prepare_canvas(width, height, canvas)
     
     image = document.createElement('img')
-    image.src = dictSquare[0]
+    image.src = "\\" + projectName + "\\asstes\\" + dictSquare[0]
     draw_image(ctx, image)
 
     ctx.fill()
