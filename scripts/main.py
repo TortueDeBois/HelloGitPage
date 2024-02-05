@@ -36,10 +36,6 @@ def prepare_canvas(width, height, canvas):
 
     ctx.clearRect(0, 0, width, height)
 
-    ctx.fillRect(30, 30, 30, 30)
-
-    ctx.fillStyle = "black"
-
     return ctx
 
 def draw_canvas(width, height):
@@ -52,8 +48,8 @@ def draw_canvas(width, height):
     print(len(dictSquare))
 
     image = js.document.createElement('img')
-    #image.src = "\\" + projectName + "\\asstes\\" + dictSquare[0]
-    #draw_image(ctx, image)
+    image.src = "\\" + projectName + "\\asstes\\" + dictSquare[0]
+    draw_image(ctx, image)
 
     ctx.fill()
 
