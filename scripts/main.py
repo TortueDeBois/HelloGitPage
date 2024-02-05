@@ -67,14 +67,14 @@ def draw_image(ctx, image):
     ctx.drawImage(image, 0, 0, 40, 20, 0, 0, width, height)
 
 # Buttons
-def squareMinus():
+def squareMinus(ev):
     squareIndex = squareIndex - 1
     if squareIndex < 0 :
         squareIndex = len(dictSquare) - 1 
     displayIndex("square")
     draw_canvas(width,height)
     
-def squarePlus():
+def squarePlus(ev):
     squareIndex = squareIndex + 1
     if squareIndex >= len(dictSquare) :
         squareIndex = 0
