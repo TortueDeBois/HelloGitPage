@@ -20,7 +20,7 @@ def initDict(path):
     dictTemp = {}
     i = 0
     for value in data:
-        dictTemp[i] = value
+        dictTemp[str(i)] = value
         i = i + 1
     return dictTemp
 
@@ -48,7 +48,7 @@ def draw_canvas(width, height):
     print(len(dictSquare))
 
     image = js.document.createElement('img')
-    image.src = "\\" + projectName + "\\asstes\\" + dictSquare[0]
+    image.src = "\\" + projectName + "\\asstes\\" + dictSquare[str(0)]
     draw_image(ctx, image)
 
     ctx.fill()
