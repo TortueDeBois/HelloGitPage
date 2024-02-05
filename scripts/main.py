@@ -39,8 +39,8 @@ def prepare_canvas(width: int, height: int, canvas: pydom.Element) -> Context2d:
     #canvas.style["width"] = f"{width}px"
     #canvas.style["height"] = f"{height}px"
 
-    canvas._js.width = width
-    canvas._js.height = height
+    #canvas._js.width = width
+    #canvas._js.height = height
 
     ctx.clearRect(0, 0, width, height)
 
