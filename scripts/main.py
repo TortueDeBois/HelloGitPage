@@ -47,7 +47,7 @@ def prepare_canvas(width: int, height: int, canvas: pydom.Element) -> Context2d:
     return ctx
 
 def draw_canvas(width, height) -> None:
-    canvas = pydom["#preview"][0]
+    canvas = pydom["#preview"]
 
     #canvas.style["display"] = "none"
 
@@ -60,8 +60,6 @@ def draw_canvas(width, height) -> None:
     ctx.fill()
 
     #canvas.style["display"] = "block"
-
-
 
 def draw_image(ctx, image):
     ctx.drawImage(image, 0, 0, 10, 10, 0, 0, width, height)
