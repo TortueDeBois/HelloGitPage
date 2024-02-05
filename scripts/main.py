@@ -53,8 +53,7 @@ def draw_canvas(width, height) -> None:
 
     ctx = prepare_canvas(width, height, canvas)
     
-    for f in dictSquare:
-        print(dictSquare[f])
+    print(len(dictSquare))
 
     image = document.createElement('img')
     #image.src = "\\" + projectName + "\\asstes\\" + dictSquare[0]
