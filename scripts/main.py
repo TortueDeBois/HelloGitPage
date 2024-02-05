@@ -34,7 +34,7 @@ def initDict(path):
 
 
 def prepare_canvas(width: int, height: int, canvas: pydom.Element) -> Context2d:
-    ctx = canvas._js.getContext("2d")
+    ctx = canvas.getContext("2d")
 
     canvas.style["width"] = f"{width}px"
     canvas.style["height"] = f"{height}px"
