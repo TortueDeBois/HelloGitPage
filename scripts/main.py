@@ -45,7 +45,7 @@ def draw_canvas(width, height):
 
     ctx = prepare_canvas(width, height, canvas)
     
-    print("taille de dictSquare :" + len(dictSquare))
+    print("taille de dictSquare :" + str(len(dictSquare)))
 
     image = js.document.createElement('img')
     image.src = "\\" + projectName + "\\asstes\\" + dictSquare[str(0)]
