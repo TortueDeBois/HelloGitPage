@@ -1,14 +1,8 @@
 from pyweb import pydom
+from pyscript import window, document
 from pyscript import when
 from pyodide.ffi import to_js
 import asyncio
-from js import (
-    CanvasRenderingContext2D as Context2d,
-    ImageData,
-    Uint8ClampedArray,
-    document,
-    console
-)
 
 width, height = 600, 600
 
@@ -47,7 +41,7 @@ def prepare_canvas(width: int, height: int, canvas: pydom.Element) -> Context2d:
     return ctx
 
 def draw_canvas(width, height) -> None:
-    canvas = pydom["#preview"]
+    canvas = document.querySelector("#preview")
 
     #canvas.style["display"] = "none"
 
