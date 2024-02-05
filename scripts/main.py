@@ -34,6 +34,8 @@ def prepare_canvas(width, height, canvas):
     #canvas._js.width = width
     #canvas._js.height = height
 
+    ctx.imageSmoothingEnabled = False
+
     ctx.clearRect(0, 0, width, height)
 
     return ctx
