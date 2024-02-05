@@ -56,7 +56,7 @@ def draw_canvas(width, height):
     #canvas.style["display"] = "block"
 
 def draw_image(ctx, image):
-    ctx.drawImage(image, 0, 0, 10, 10, 0, 0, width, height)
+    ctx.drawImage(image, 0, 0, 40, 20, 0, 0, width, height)
 
 def main():
     draw_canvas(width, height)
