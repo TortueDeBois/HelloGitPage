@@ -47,7 +47,7 @@ def prepare_canvas(width: int, height: int, canvas: pydom.Element) -> Context2d:
     return ctx
 
 def draw_canvas(width, height) -> None:
-    canvas = document.getElementById("canvas")
+    canvas = pydom["canvas"][0]
 
     canvas.style["display"] = "none"
 
