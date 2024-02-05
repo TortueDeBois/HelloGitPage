@@ -29,7 +29,6 @@ def initDict(path):
     i = 0
     for value in data:
         dictTemp[i] = value
-        print(dictTemp[i])
         i = i + 1
     return dictTemp
 
@@ -53,7 +52,12 @@ def draw_canvas(width, height) -> None:
     canvas.style["display"] = "none"
 
     ctx = prepare_canvas(width, height, canvas)
-    ctx.fillStyle = 'green'
+    
+    image = document.createElement('img')
+    image.src = dictSquare[0]
+    draw_image(ctx, image)
+
+    ctx.fill()
 
     canvas.style["display"] = "block"
 
