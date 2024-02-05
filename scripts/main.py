@@ -20,8 +20,9 @@ def initDict(path):
     dictTemp = {}
     i = 0
     for value in data:
-        dictTemp[str(i)] = value
-        i = i + 1
+        if path in value :
+            dictTemp[str(i)] = value
+            i = i + 1
     return dictTemp
 
 
@@ -47,18 +48,27 @@ def draw_canvas(width, height):
 
     ctx = prepare_canvas(width, height, canvas)
     
-    print("taille de dictSquare :" + str(len(dictSquare)))
-
-    image = js.document.createElement('img')
-    image.src = projectName + "\\assets\\" + dictSquare[str(0)]
-    draw_image(ctx, image)
+    draw_square(ctx)
+    draw_triangle(ctx)
 
     ctx.fill()
 
     #canvas.style["display"] = "block"
 
+def draw_square(ctx):
+    image = js.document.createElement('img')
+    image.src = projectName + "\\assets\\" + dictSquare[str(squareIndex)]
+    draw_image(ctx, image)
+
+def draw_square(ctx):
+    image = js.document.createElement('img')
+    image.src = projectName + "\\assets\\" + dictTriangle[str(triangleIndex)]
+    draw_image(ctx, image)
+
 def draw_image(ctx, image):
     ctx.drawImage(image, 0, 0, 40, 20, 0, 0, width, height)
+
+
 
 def main():
     draw_canvas(width, height)
