@@ -2,7 +2,7 @@ import js
 import json
 import sys
 
-width, height = 600, 600
+width, height = 400, 200
 
 is_selecting = False
 init_sx, init_sy = None, None
