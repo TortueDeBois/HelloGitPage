@@ -83,10 +83,30 @@ def squarePlus(ev):
     displayIndex("square")
     draw_canvas(width,height)
 
+def TriangleMinus(ev):
+    global triangleIndex
+    triangleIndex = triangleIndex - 1
+    if triangleIndex < 0 :
+        triangleIndex = len(dictSquare) - 1 
+    displayIndex("triangle")
+    draw_canvas(width,height)
+
+def squarePlus(ev):
+    global triangleIndex
+    triangleIndex = triangleIndex + 1
+    if triangleIndex >= len(dictTriangle) :
+        triangleIndex = 0
+    displayIndex("triangle")
+    draw_canvas(width,height)
+
+# display index
 def displayIndex(shape):
     if shape == "square":
         textIndex = js.document.getElementById("squareIndex") 
         textIndex.innerText = dictSquare[str(squareIndex)].replace("square\\","")
+    elif shape == "triangle":
+        textIndex = js.document.getElementById("triangleIndex") 
+        textIndex.innerText = dictTriangle[str(triangleIndex)].replace("triangle\\","")
 
 def main():
     draw_canvas(width, height)
