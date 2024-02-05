@@ -68,10 +68,29 @@ def draw_triangle(ctx):
 def draw_image(ctx, image):
     ctx.drawImage(image, 0, 0, 40, 20, 0, 0, width, height)
 
+# Buttons
+def squareMinus():
+    squareIndex = squareIndex - 1
+    if squareIndex < 0 :
+        squareIndex = len(dictSquare) - 1 
+    displayIndex("square")
+    draw_canvas(width,height)
+    
+def squarePlus():
+    squareIndex = squareIndex + 1
+    if squareIndex >= len(dictSquare) :
+        squareIndex = 0
+    displayIndex("square")
+    draw_canvas(width,height)
 
+def displayIndex(shape):
+    if shape == "square":
+        textIndex = js.document.getElementById("squareIndex") 
+        textIndex.innerText = dictSquare[str(squareIndex)].replace("square\\","")
 
 def main():
     draw_canvas(width, height)
+    displayIndex("square")
 
 
 dictSquare = initDict("square")
