@@ -1,8 +1,6 @@
-from pyweb import pydom
-from pyscript import window, document
-from pyscript import when
-from pyodide.ffi import to_js
-import asyncio
+import js
+import json
+import sys
 
 width, height = 600, 600
 
@@ -27,7 +25,7 @@ def initDict(path):
     return dictTemp
 
 
-def prepare_canvas(width, height, canvas) -> Context2d:
+def prepare_canvas(width, height, canvas):
     ctx = canvas.getContext("2d")
 
     #canvas.style["width"] = f"{width}px"
@@ -38,10 +36,14 @@ def prepare_canvas(width, height, canvas) -> Context2d:
 
     ctx.clearRect(0, 0, width, height)
 
+    ctx.fillRect(30, 30, 30, 30)
+
+    ctx.fillStyle = "black"
+
     return ctx
 
-def draw_canvas(width, height) -> None:
-    canvas = document.querySelector("#preview")[0]
+def draw_canvas(width, height):
+    canvas = js.document.getElementById("#preview")
 
     #canvas.style["display"] = "none"
 
@@ -49,7 +51,7 @@ def draw_canvas(width, height) -> None:
     
     print(len(dictSquare))
 
-    image = document.createElement('img')
+    image = js.document.createElement('img')
     #image.src = "\\" + projectName + "\\asstes\\" + dictSquare[0]
     #draw_image(ctx, image)
 
