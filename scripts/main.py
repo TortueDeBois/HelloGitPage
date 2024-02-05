@@ -68,6 +68,7 @@ def draw_image(ctx, image):
 
 # Buttons
 def squareMinus(ev):
+    global squareIndex
     squareIndex = squareIndex - 1
     if squareIndex < 0 :
         squareIndex = len(dictSquare) - 1 
@@ -75,6 +76,7 @@ def squareMinus(ev):
     draw_canvas(width,height)
     
 def squarePlus(ev):
+    global squareIndex
     squareIndex = squareIndex + 1
     if squareIndex >= len(dictSquare) :
         squareIndex = 0
