@@ -60,7 +60,7 @@ def draw_square(ctx):
     image.src = projectName + "\\assets\\" + dictSquare[str(squareIndex)]
     draw_image(ctx, image)
 
-def draw_square(ctx):
+def draw_triangle(ctx):
     image = js.document.createElement('img')
     image.src = projectName + "\\assets\\" + dictTriangle[str(triangleIndex)]
     draw_image(ctx, image)
