@@ -53,13 +53,16 @@ def draw_canvas(width, height) -> None:
     canvas.style["display"] = "none"
 
     ctx = prepare_canvas(width, height, canvas)
+    ctx.fillStyle = 'green'
+    ctx.fill()
 
-    draw_square(ctx)
+
+    #draw_square(ctx)
 
     canvas.style["display"] = "block"
 
-def draw_square(ctx):
-    key = squareIndex
+#def draw_square(ctx):
+    #key = squareIndex
     #image = document.createElement('img')
     #image.src = projectName + "\\assets\\square\\" + dictSquare[key]
 
