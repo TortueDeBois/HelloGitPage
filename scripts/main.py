@@ -59,8 +59,9 @@ def draw_image(ctx, image):
     ctx.drawImage(image, 0, 0, 10, 10, 0, 0, width, height)
 
 def main():
-    dictSquare = initDict("square")
-    dictTriangle = initDict("triangle")
     draw_canvas(width, height)
 
+
+dictSquare = initDict("square")
+dictTriangle = initDict("triangle")
 main()
