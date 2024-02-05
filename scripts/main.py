@@ -29,7 +29,7 @@ def initDict(path):
     i = 0
     for value in data:
         dictTemp[i] = value#.replace(path,"")
-        print(dictSquare[i])
+        print(dictTemp[i])
         i = i + 1
     return dictTemp
 
