@@ -111,6 +111,7 @@ def displayIndex(shape):
 def main():
     draw_canvas(width, height)
     displayIndex("square")
+    displayIndex("triangle")
 
 dictSquare = initDict("square")
 dictTriangle = initDict("triangle")
