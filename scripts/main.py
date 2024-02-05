@@ -28,8 +28,8 @@ def initDict(path):
     dictTemp = {}
     i = 0
     for value in data:
-        print(value)
-        dictTemp[i] = value#.replace(path,"")
+        dictTemp[i] = value
+        print(dictTemp[i])
         i = i + 1
     return dictTemp
 
@@ -54,7 +54,6 @@ def draw_canvas(width, height) -> None:
 
     ctx = prepare_canvas(width, height, canvas)
     ctx.fillStyle = 'green'
-    ctx.fill()
 
     canvas.style["display"] = "block"
 
