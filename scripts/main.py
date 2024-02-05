@@ -60,12 +60,10 @@ def draw_canvas(width, height) -> None:
 
 def draw_square(ctx):
     key = squareIndex
-    image = document.createElement('img')
-    image.src = projectName + "\\assets\\square\\" + dictSquare[key]
+    #image = document.createElement('img')
+    #image.src = projectName + "\\assets\\square\\" + dictSquare[key]
 
-    print(image.src)
-
-    draw_image(ctx,image)
+    #draw_image(ctx,image)
 
 def draw_image(ctx, image):
     ctx.drawImage(image, 0, 0, 10, 10, 0, 0, width, height)
