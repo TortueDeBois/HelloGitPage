@@ -27,7 +27,7 @@ def initDict(path):
     return dictTemp
 
 
-def prepare_canvas(width: int, height: int, canvas: pydom.Element) -> Context2d:
+def prepare_canvas(width, height, canvas) -> Context2d:
     ctx = canvas.getContext("2d")
 
     #canvas.style["width"] = f"{width}px"
@@ -41,7 +41,7 @@ def prepare_canvas(width: int, height: int, canvas: pydom.Element) -> Context2d:
     return ctx
 
 def draw_canvas(width, height) -> None:
-    canvas = document.querySelector("#preview")
+    canvas = document.querySelector("#preview")[0]
 
     #canvas.style["display"] = "none"
 
