@@ -36,8 +36,8 @@ def initDict(path):
 def prepare_canvas(width: int, height: int, canvas: pydom.Element) -> Context2d:
     ctx = canvas._js.getContext("2d")
 
-    canvas.style["width"] = f"{width}px"
-    canvas.style["height"] = f"{height}px"
+    #canvas.style["width"] = f"{width}px"
+    #canvas.style["height"] = f"{height}px"
 
     canvas._js.width = width
     canvas._js.height = height
@@ -47,7 +47,9 @@ def prepare_canvas(width: int, height: int, canvas: pydom.Element) -> Context2d:
     return ctx
 
 def draw_canvas(width, height) -> None:
-    canvas = pydom["canvas"][0]
+    canvas = pydom["#preview"][0]
+
+    #canvas.style["display"] = "none"
 
     ctx = prepare_canvas(width, height, canvas)
     
@@ -56,6 +58,8 @@ def draw_canvas(width, height) -> None:
     draw_image(ctx, image)
 
     ctx.fill()
+
+    #canvas.style["display"] = "block"
 
 
 
