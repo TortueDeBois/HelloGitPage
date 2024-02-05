@@ -83,7 +83,7 @@ def squarePlus(ev):
     displayIndex("square")
     draw_canvas(width,height)
 
-def TriangleMinus(ev):
+def triangleMinus(ev):
     global triangleIndex
     triangleIndex = triangleIndex - 1
     if triangleIndex < 0 :
@@ -91,7 +91,7 @@ def TriangleMinus(ev):
     displayIndex("triangle")
     draw_canvas(width,height)
 
-def squarePlus(ev):
+def trianglePlus(ev):
     global triangleIndex
     triangleIndex = triangleIndex + 1
     if triangleIndex >= len(dictTriangle) :
