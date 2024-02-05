@@ -43,7 +43,7 @@ def prepare_canvas(width, height, canvas):
     return ctx
 
 def draw_canvas(width, height):
-    canvas = js.document.getElementById("#preview")
+    canvas = js.document.getElementById("preview")
 
     #canvas.style["display"] = "none"
 
