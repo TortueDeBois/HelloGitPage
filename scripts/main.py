@@ -28,6 +28,7 @@ def initDict(path):
     dictTemp = {}
     i = 0
     for value in data:
+        print(value)
         dictTemp[i] = value#.replace(path,"")
         i = i + 1
     for x in dictTemp:
