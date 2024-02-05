@@ -48,7 +48,7 @@ def draw_canvas(width, height):
     print("taille de dictSquare :" + str(len(dictSquare)))
 
     image = js.document.createElement('img')
-    image.src = projectName + "\\assets" + dictSquare[str(0)]
+    image.src = projectName + "\\assets\\" + dictSquare[str(0)]
     draw_image(ctx, image)
 
     ctx.fill()
