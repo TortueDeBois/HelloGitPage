@@ -44,8 +44,6 @@ def prepare_canvas(width, height, canvas):
 def draw_canvas(width, height):
     canvas = js.document.getElementById("preview")
 
-    #canvas.style["display"] = "none"
-
     ctx = prepare_canvas(width, height, canvas)
     
     draw_square(ctx)
@@ -91,7 +89,6 @@ def displayIndex(shape):
 def main():
     draw_canvas(width, height)
     displayIndex("square")
-
 
 dictSquare = initDict("square")
 dictTriangle = initDict("triangle")
