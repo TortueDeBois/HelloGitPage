@@ -21,7 +21,8 @@ data = []
 for f in os.listdir(str(Path.cwd()) + "\\assets\\"):
     for file in os.listdir(str(Path.cwd()) + "\\assets\\" + f + "\\"):
         data.append(f + "\\" + file) #Trouver une alternativeà "append" car risque d'explosion en compléxité (temps ET mémoire)
-
+print(data)
+"""
 dictSquare = {}
 squareIndex = 0
 dictTriangle = {}
@@ -126,4 +127,4 @@ def main():
 
 dictSquare = initDict("square")
 dictTriangle = initDict("triangle")
-main()
+main()"""
