@@ -1,6 +1,8 @@
-import js
-import json
-import sys
+# import js
+# import json
+# import sys
+import os
+from pathlib import Path
 
 width, height = 400, 200
 
@@ -9,7 +11,16 @@ init_sx, init_sy = None, None
 sx, sy = None, None
 
 projectName = "\\HelloGitPage"
-data = ["square\\red.png","square\\blue.png", "triangle\\green.png", "triangle\\yellow.png"]
+# data = ["square\\red.png","square\\blue.png", "triangle\\green.png", "triangle\\yellow.png"]
+
+"""
+Récupérer toutes les imgs. Selon la nomenclature:
+$path\\<folder>\\<file>
+"""
+data = []
+for f in os.listdir(str(Path.cwd()) + "\\assets\\"):
+    for file in os.listdir(str(Path.cwd()) + "\\assets\\" + f + "\\"):
+        data.append(f + "\\" + file) #Trouver une alternativeà "append" car risque d'explosion en compléxité (temps ET mémoire)
 
 dictSquare = {}
 squareIndex = 0
