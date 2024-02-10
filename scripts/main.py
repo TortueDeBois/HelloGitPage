@@ -127,8 +127,8 @@ async def init_assets():
         url = "https:\\\\tortuedebois.github.io" + projectName + "\\assets\\" + info
         image = await pyfetch(url)
 
-        # with open("/assets/" + info, 'w') as f:
-        #     f.write(image)
+        with open("/assets/" + info.replace("\\","/"), 'w') as f:
+            f.write(image)
 
 
     js.console.log('Root directory contents:')
