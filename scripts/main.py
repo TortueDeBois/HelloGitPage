@@ -114,13 +114,13 @@ def displayIndex(shape):
 
 async def init_assets():
     global data
-    path = "/assets"
+    path = "\\assets"
     # mode 
     mode = 0o666
     os.mkdir(path, mode) 
 
     for info in data:
-        path = "/assets/" + info.split('/')[1]
+        path = "\\assets\\" + info.split('\\')[0]
         js.console.log(path)
         js.console.log(os.isdir(path))
 
