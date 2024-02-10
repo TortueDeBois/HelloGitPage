@@ -133,11 +133,14 @@ async def init_assets():
 
     js.console.log('Root directory contents:')
     files = os.listdir('/')
-    for file in files:
-        js.console.log(file)
+    # for file in files:
+    #     js.console.log(file)
     files = os.listdir('/assets')
     for file in files:
         js.console.log(file)
+
+        for f in os.listdir('/assets/' + file):
+            js.console.log("\t" + f)
 
 
 def test_data():
