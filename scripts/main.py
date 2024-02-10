@@ -60,12 +60,12 @@ def draw_canvas(width, height):
 
 def draw_square(ctx):
     image = js.document.createElement('img')
-    image.src = projectName + "\\assets\\" + dictSquare[str(squareIndex)]
+    image.src = os.listdir(dictSquare[str(squareIndex)])
     draw_image(ctx, image)
 
 def draw_triangle(ctx):
     image = js.document.createElement('img')
-    image.src = projectName + "\\assets\\" + dictTriangle[str(triangleIndex)]
+    image.src = os.listdir(dictTriangle[str(triangleIndex)])
     draw_image(ctx, image)
 
 def draw_image(ctx, image):
