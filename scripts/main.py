@@ -12,7 +12,7 @@ init_sx, init_sy = None, None
 sx, sy = None, None
 
 projectName = "\\HelloGitPage"
-# data = ["square\\red.png","square\\blue.png", "triangle\\green.png", "triangle\\yellow.png"]
+data = ["square\\red.png","square\\blue.png", "triangle\\green.png", "triangle\\yellow.png"]
 
 
 dictSquare = {}
