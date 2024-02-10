@@ -114,13 +114,13 @@ def displayIndex(shape):
 
 async def init_assets():
     global data
-    path = "\\assets"
+    path = "/assets"
     # mode 
     mode = 0o666
     os.mkdir(path, mode) 
 
     for info in data:
-        path = "\\assets\\" + info.split('\\')[0]
+        path = "/assets/" + info.split('\\')[0]
         if not os.path.exists(path):
             os.mkdir(path, mode) 
         else :
@@ -150,7 +150,7 @@ def test_data():
 async def main():
     global dictSquare, dictTriangle
     await init_assets()
-    # test_data()
+    test_data()
     dictSquare = initDict("square")
     dictTriangle = initDict("triangle")
     draw_canvas(width, height)
