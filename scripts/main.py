@@ -126,8 +126,8 @@ async def init_assets():
     files = os.listdir('/')
     for file in files:
         js.console.log(file)
-    js.console.log(os.path.exists('assets/'))
-    files = os.listdir('assets/')
+    js.console.log(os.path.exists('/assets/'))
+    files = os.listdir('/assets/')
     for file in files:
         js.console.log(file)
 
