@@ -118,7 +118,7 @@ async def init_assets():
     os.mkdir(path) 
 
     for info in data:
-        path = "assets/" + info.split('\\')[0]
+        path = "/assets/" + info.split('\\')[0]
         if not os.path.exists(path):
             os.mkdir(path) 
 
@@ -126,8 +126,7 @@ async def init_assets():
     files = os.listdir('/')
     for file in files:
         js.console.log(file)
-    js.console.log(os.path.exists('/assets/'))
-    files = os.listdir('/assets/')
+    files = os.listdir('/assets')
     for file in files:
         js.console.log(file)
 
