@@ -125,7 +125,8 @@ async def init_assets():
             os.mkdir(path) 
 
         url = "https:\\\\tortuedebois.github.io" + projectName + "\\assets\\" + info
-        image = await pyfetch(url).bytes()
+        request = await pyfetch(url)
+        image = request.bytes()
 
         with open("/assets/" + info.replace("\\","/"), 'w') as f:
             f.write(image)
