@@ -115,14 +115,12 @@ def displayIndex(shape):
 async def init_assets():
     global data
     path = "/assets"
-    # mode 
-    mode = 0o666
-    os.mkdir(path, mode) 
+    os.mkdir(path) 
 
     for info in data:
         path = "/assets/" + info.split('\\')[0]
         if not os.path.exists(path):
-            os.mkdir(path, mode) 
+            os.mkdir(path) 
 
     js.console.log('Root directory contents:')
     files = os.listdir('/')
@@ -132,8 +130,6 @@ async def init_assets():
     #     files = os.listdir('/assets')
     #     for file in files:
     #         js.console.log(file)
-
-    
 
 
 def test_data():
