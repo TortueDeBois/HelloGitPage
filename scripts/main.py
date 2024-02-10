@@ -115,7 +115,7 @@ def displayIndex(shape):
 
 async def init_assets():
     global data
-    path = "\\assets"
+    path = "/assets"
     os.mkdir(path) 
 
     for info in data:
