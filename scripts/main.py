@@ -24,10 +24,10 @@ triangleIndex = 0
 def initDict(path):
     dictTemp = {}
     i = 0
-    for value in data:
-        if path in value :
-            dictTemp[str(i)] = value
-            i = i + 1
+
+    for f in os.listdir(path):
+        dictTemp[str(i)] = f
+        i = i + 1
     return dictTemp
 
 
@@ -139,28 +139,29 @@ async def init_assets():
     #         js.console.log("\t" + f)
 
 
-def test_data():
+def init_data():
     """
     Récupérer toutes les imgs. Selon la nomenclature:
     $path\\<folder>\\<file>
     """
-    data = []
+    # data = []
     # for f in os.listdir(str(Path.cwd()) + "/assets/"):
     #     for file in os.listdir(str(Path.cwd()) + "/assets/" + f + "/"):
     #         data.append(f + "/" + file) #Trouver une alternativeà "append" car risque d'explosion en compléxité (temps ET mémoire)
+    # print(data)
+
+    global dictSquare, dictTriangle
+
     files = os.listdir('/assets')
     for file in files:
-        for f in os.listdir('/assets/' + file):
-            data.append("/assets/" + file + "/" + f)
-    js.console.log(len(data))
-
+        if file == "square":
+            dictSquare = initDict("/assets/" + file)
+        elif file == "triangle":
+            dictTriangle = initDict("/assets/" + file)
 
 async def main():
-    global dictSquare, dictTriangle
     await init_assets()
-    test_data()
-    dictSquare = initDict("square")
-    dictTriangle = initDict("triangle")
+    init_data()
     draw_canvas(width, height)
     displayIndex("square")
     displayIndex("triangle")
