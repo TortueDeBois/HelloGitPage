@@ -3,6 +3,7 @@ import json
 import sys
 import os
 from pathlib import Path
+from pyodide.http import pyfetch
 import asyncio
 
 width, height = 400, 200
@@ -114,19 +115,23 @@ def displayIndex(shape):
 
 async def init_assets():
     global data
-    path = "/assets"
+    path = "\\assets"
     os.mkdir(path) 
 
     for info in data:
-        path = "/assets/" + info.split('\\')[0]
+        path = "\\assets\\" + info.split('\\')[0]
+
         if not os.path.exists(path):
             os.mkdir(path) 
+        url = "https:\\\\tortuedebois.github.io" + projectName + "\\assets\\" + info
+        image = await pyfetch(url)
+
 
     js.console.log('Root directory contents:')
-    files = os.listdir('/')
+    files = os.listdir('\\')
     for file in files:
         js.console.log(file)
-    files = os.listdir('/assets')
+    files = os.listdir('\\assets')
     for file in files:
         js.console.log(file)
 
