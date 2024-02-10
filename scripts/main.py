@@ -128,7 +128,7 @@ async def init_assets():
         image = await pyfetch(url)
 
         with open("/assets/" + info.replace("\\","/"), 'w') as f:
-            f.write(image)
+            f.write(image.bytes())
 
 
     js.console.log('Root directory contents:')
