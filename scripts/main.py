@@ -59,6 +59,7 @@ def draw_canvas(width, height):
     #canvas.style["display"] = "block"
 
 def draw_square(ctx):
+    # todo chercher image from pyodide
     image = js.document.createElement('img')
     image.src = dictSquare[str(squareIndex)]
     draw_image(ctx, image)
