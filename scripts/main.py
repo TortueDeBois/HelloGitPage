@@ -131,16 +131,12 @@ async def init_assets():
             f.write(await response.bytes())
 
 
-    js.console.log('Root directory contents:')
-    files = os.listdir('/')
+    # files = os.listdir('/assets')
     # for file in files:
     #     js.console.log(file)
-    files = os.listdir('/assets')
-    for file in files:
-        js.console.log(file)
 
-        for f in os.listdir('/assets/' + file):
-            js.console.log("\t" + f)
+    #     for f in os.listdir('/assets/' + file):
+    #         js.console.log("\t" + f)
 
 
 def test_data():
@@ -149,16 +145,16 @@ def test_data():
     $path\\<folder>\\<file>
     """
     data = []
-    for f in os.listdir(str(Path.cwd()) + "\\assets\\"):
-        for file in os.listdir(str(Path.cwd()) + "\\assets\\" + f + "\\"):
-            data.append(f + "\\" + file) #Trouver une alternativeà "append" car risque d'explosion en compléxité (temps ET mémoire)
-    js.console.log(data)
+    for f in os.listdir(str(Path.cwd()) + "/assets/"):
+        for file in os.listdir(str(Path.cwd()) + "/assets/" + f + "/"):
+            data.append(f + "/" + file) #Trouver une alternativeà "append" car risque d'explosion en compléxité (temps ET mémoire)
+    js.console.log(len(data))
 
 
 async def main():
     global dictSquare, dictTriangle
     await init_assets()
-    #test_data()
+    test_data()
     dictSquare = initDict("square")
     dictTriangle = initDict("triangle")
     draw_canvas(width, height)
