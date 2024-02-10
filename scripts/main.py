@@ -121,8 +121,11 @@ async def init_assets():
 
     for info in data:
         path = "\\assets\\" + info.split('\\')[0]
-        js.console.log(path)
-        js.console.log(os.isdir(path))
+        if not os.path.exists(path):
+            os.mkdir(path, mode) 
+        else :
+            js.console.log("ok")
+
 
 
     js.console.log('Root directory contents:')
