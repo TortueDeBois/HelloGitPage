@@ -119,19 +119,20 @@ async def init_assets():
     mode = 0o666
     os.mkdir(path, mode) 
 
-    # for info in data:
-    #     path = "/assets/" + info.split('\\')[0]
-    #     if not os.path.exists(path):
-    #         os.mkdir(path, mode) 
-    #     else :
-    #         js.console.log("ok")
-
-
+    for info in data:
+        path = "/assets/" + info.split('\\')[0]
+        if not os.path.exists(path):
+            os.mkdir(path, mode) 
 
     js.console.log('Root directory contents:')
     files = os.listdir('/')
     for file in files:
         js.console.log(file)
+    if os.path.exists('/assets'):
+        files = os.listdir('/assets')
+        for file in files:
+            js.console.log(file)
+
     
 
 
