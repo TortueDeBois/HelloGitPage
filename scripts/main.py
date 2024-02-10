@@ -113,7 +113,7 @@ def displayIndex(shape):
         textIndex.innerText = dictTriangle[str(triangleIndex)].replace("triangle\\","")
 
 async def init_assets():
-    path = "assets"
+    path = "/assets"
     # mode 
     mode = 0o666
     os.mkdir(path, mode) 
