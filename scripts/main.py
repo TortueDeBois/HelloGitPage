@@ -26,7 +26,7 @@ def initDict(path):
     i = 0
 
     for f in os.listdir(path):
-        dictTemp[str(i)] = f
+        dictTemp[str(i)] = path + "/" + f
         i = i + 1
     return dictTemp
 
