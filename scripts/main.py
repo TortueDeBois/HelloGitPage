@@ -113,10 +113,17 @@ def displayIndex(shape):
         textIndex.innerText = dictTriangle[str(triangleIndex)].replace("triangle\\","")
 
 async def init_assets():
+    global data
     path = "/assets"
     # mode 
     mode = 0o666
     os.mkdir(path, mode) 
+
+    for info in data:
+        path = "/assets/" + info.split('/')[1]
+        js.console.log(path)
+        js.console.log(os.isdir(path))
+
 
     js.console.log('Root directory contents:')
     files = os.listdir('/')
