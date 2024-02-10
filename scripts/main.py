@@ -123,6 +123,7 @@ async def init_assets():
 
         if not os.path.exists(path):
             os.mkdir(path) 
+
         url = "https:\\\\tortuedebois.github.io" + projectName + "\\assets\\" + info
         image = await pyfetch(url)
 
@@ -134,7 +135,7 @@ async def init_assets():
     files = os.listdir('/')
     for file in files:
         js.console.log(file)
-    files = os.listdir('/assets')
+    files = os.listdir('assets/')
     for file in files:
         js.console.log(file)
 
