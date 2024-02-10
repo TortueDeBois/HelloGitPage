@@ -117,6 +117,11 @@ async def init_assets():
     # mode 
     mode = 0o666
     os.mkdir(path, mode) 
+
+    js.console.log('Root directory contents:')
+    files = os.listdir('/')
+    for file in files:
+        js.console.log(file)
     
 
 
@@ -129,7 +134,7 @@ def test_data():
     for f in os.listdir(str(Path.cwd()) + "\\assets\\"):
         for file in os.listdir(str(Path.cwd()) + "\\assets\\" + f + "\\"):
             data.append(f + "\\" + file) #Trouver une alternativeà "append" car risque d'explosion en compléxité (temps ET mémoire)
-    print(data)
+    js.console.log(data)
 
 
 async def main():
