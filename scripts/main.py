@@ -150,7 +150,7 @@ def test_data():
 async def main():
     global dictSquare, dictTriangle
     await init_assets()
-    test_data()
+    #test_data()
     dictSquare = initDict("square")
     dictTriangle = initDict("triangle")
     draw_canvas(width, height)
