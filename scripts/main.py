@@ -3,6 +3,7 @@ import json
 import sys
 import os
 from pathlib import Path
+import asyncio
 
 width, height = 400, 200
 
@@ -13,15 +14,6 @@ sx, sy = None, None
 projectName = "\\HelloGitPage"
 # data = ["square\\red.png","square\\blue.png", "triangle\\green.png", "triangle\\yellow.png"]
 
-"""
-Récupérer toutes les imgs. Selon la nomenclature:
-$path\\<folder>\\<file>
-"""
-data = []
-for f in os.listdir(str(Path.cwd()) + "\\assets\\"):
-    for file in os.listdir(str(Path.cwd()) + "\\assets\\" + f + "\\"):
-        data.append(f + "\\" + file) #Trouver une alternativeà "append" car risque d'explosion en compléxité (temps ET mémoire)
-print(data)
 
 dictSquare = {}
 squareIndex = 0
@@ -120,11 +112,36 @@ def displayIndex(shape):
         textIndex = js.document.getElementById("triangleIndex") 
         textIndex.innerText = dictTriangle[str(triangleIndex)].replace("triangle\\","")
 
-def main():
+async def init_assets():
+    path = "assets"
+    # mode 
+    mode = 0o666
+    os.mkdir(path, mode) 
+    
+
+
+def test_data():
+    """
+    Récupérer toutes les imgs. Selon la nomenclature:
+    $path\\<folder>\\<file>
+    """
+    data = []
+    for f in os.listdir(str(Path.cwd()) + "\\assets\\"):
+        for file in os.listdir(str(Path.cwd()) + "\\assets\\" + f + "\\"):
+            data.append(f + "\\" + file) #Trouver une alternativeà "append" car risque d'explosion en compléxité (temps ET mémoire)
+    print(data)
+
+
+async def main():
+    global dictSquare, dictTriangle
+    await init_assets()
+    test_data()
+    dictSquare = initDict("square")
+    dictTriangle = initDict("triangle")
     draw_canvas(width, height)
     displayIndex("square")
     displayIndex("triangle")
 
-dictSquare = initDict("square")
-dictTriangle = initDict("triangle")
-main()
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(main())
