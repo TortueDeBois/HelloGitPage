@@ -36,10 +36,11 @@ def initDict(path):
 def draw_image():
     img_html = js.document.getElementById("preview")
 
-    image1 = draw_square()
-    img = image1
+    image1 = get_square()
+    img = Image.open(image1.src)
 
-    image2 = draw_triangle()
+    image2 = get_triangle()
+    image2 = Image.open(image2.src)
     img.paste(image2, (400,200))
     #to do here combinaison d'image voir pillow (pil)
 
@@ -47,11 +48,11 @@ def draw_image():
 
     #canvas.style["display"] = "block"
 
-def draw_square():
+def get_square():
     image_file = get_image_from_pyodide(dictSquare[str(squareIndex)],"square.png")
     return image_file
 
-def draw_triangle():
+def get_triangle():
     image_file = get_image_from_pyodide(dictTriangle[str(triangleIndex)],"triangle.png")
     return image_file
 
