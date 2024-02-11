@@ -117,8 +117,8 @@ def copy_seed(ev):
     global triangleIndex, dictTriangle
     global squareIndex, dictSquare
 
-    seed = f"square-{dictSquare[str(squareIndex)].replace("/assets/square/","").replace(".png","")};"
-    seed = seed + f"triangle-{dictTriangle[str(triangleIndex)].replace("/assets/triangle/","").replace(".png","")};"
+    seed = "square-" + dictSquare[str(squareIndex)].replace("/assets/square/","").replace(".png","")+ ";"
+    seed = seed + "triangle-" + dictTriangle[str(triangleIndex)].replace("/assets/triangle/","").replace(".png","")+";"
     
     clipboard.copy(seed)
 
