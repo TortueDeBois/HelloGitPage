@@ -75,7 +75,7 @@ def draw_triangle(ctx):
 
 def get_image_from_pyodide(path):
     f = open(path, 'r')
-    image_file = File.new([Uint8Array.new(f.getvalue())], "new_image_file.png", {"type": "image/png"})
+    image_file = File.new([Uint8Array.new(f.read())], "new_image_file.png", {"type": "image/png"})
     return image_file
 
 def draw_image(ctx, image):
