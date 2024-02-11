@@ -62,14 +62,12 @@ def draw_canvas(width, height):
 def draw_square(ctx):
     image_file = get_image_from_pyodide(dictTriangle[str(squareIndex)],"square.png")
     image = js.document.createElement('img')
-    # image.src = dictSquare[str(squareIndex)]
     image.src = window.URL.createObjectURL(image_file)
     draw_image(ctx, image)
 
 def draw_triangle(ctx):
     image_file = get_image_from_pyodide(dictTriangle[str(triangleIndex)],"triangle.png")
     image = js.document.createElement('img')
-    #image.src = dictTriangle[str(triangleIndex)]
     image.src = window.URL.createObjectURL(image_file)
     draw_image(ctx, image)
 
