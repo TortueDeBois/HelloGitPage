@@ -1,7 +1,12 @@
+.loading{
+    height:"400px"; 
+    width:"800px";
+}
 #preview{
     image-rendering: pixelated;
-    height: 50%;
-    width:auto;
+    
+    height:"50%"; 
+    width:"auto";
 }
 .row{
     display:flex;

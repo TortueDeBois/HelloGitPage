@@ -18,7 +18,6 @@ sx, sy = None, None
 projectName = "\\HelloGitPage"
 data = ["square\\red.png","square\\blue.png", "triangle\\green.png", "triangle\\yellow.png"]
 
-
 dictSquare = {}
 squareIndex = 0
 dictTriangle = {}
@@ -60,6 +59,8 @@ async def draw_image():
     my_image.save(my_stream, format="PNG")
     image_file = File.new([Uint8Array.new(my_stream.getvalue())], image1.name, {type: "image/png"})
 
+    img_html.classList.remove("loading")
+    
     img_html.src = window.URL.createObjectURL(image_file)
 
     #canvas.style["display"] = "block"
