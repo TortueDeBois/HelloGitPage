@@ -34,11 +34,19 @@ def initDict(path):
     return dictTemp
 
 
-def draw_image():
+async def draw_image():
     img_html = js.document.getElementById("preview")
 
     image1 = get_square()
-    img = Image.frombytes('rgba',(20,40), image1)
+    array_buf = Uint8Array.new(await image1.arrayBuffer())
+    bytes_list = bytearray(array_buf)
+    my_bytes = BytesIO(bytes_list) 
+    my_image = Image.open(my_bytes)
+
+    my_stream = BytesIO()
+    my_image.save(my_stream, format="PNG")
+    image_file = File.new([Uint8Array.new(my_stream.getvalue())], image1.name, {type: "image/png"})
+
 
     # image2 = get_triangle()
     # img2Bytes = BytesIO()
@@ -47,19 +55,13 @@ def draw_image():
 
     # image1.save(image1, format='PNG')
 
-    my_stream = BytesIO()
-    img.save(my_stream, format="PNG")
-    image_file = File.new([Uint8Array.new(my_stream.getvalue())], "new_image_file.png", {type: "image/png"})
-
     img_html.src = image_file.src
 
     #canvas.style["display"] = "block"
 
 def get_square():
-    #image_file = get_image_from_pyodide(dictSquare[str(squareIndex)],"square.png")
-    f = open(dictSquare[str(squareIndex)], 'rb')
-    bytes = f.read() 
-    return bytes
+    image_file = get_image_from_pyodide(dictSquare[str(squareIndex)],"square.png")
+    return image_file
 
 def get_triangle():
     image_file = get_image_from_pyodide(dictTriangle[str(triangleIndex)],"triangle.png")
