@@ -1,3 +1,4 @@
+from js import File, Uint8Array, window
 import js
 import json
 import sys
@@ -65,9 +66,16 @@ def draw_square(ctx):
     draw_image(ctx, image)
 
 def draw_triangle(ctx):
+    image_file = get_image_from_pyodide(dictTriangle[str(triangleIndex)])
     image = js.document.createElement('img')
-    image.src = dictTriangle[str(triangleIndex)]
+    #image.src = dictTriangle[str(triangleIndex)]
+    image.src = window.URL.createObjectURL(image_file)
     draw_image(ctx, image)
+
+def get_image_from_pyodide(path):
+    f = open(path, 'r')
+    image_file = File.new([Uint8Array.new(f.getvalue())], "new_image_file.png", {"type": "image/png"})
+    return image_file
 
 def draw_image(ctx, image):
     ctx.drawImage(image, 0, 0, 40, 20, 0, 0, width, height)
