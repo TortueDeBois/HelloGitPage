@@ -39,9 +39,6 @@ def draw_image():
 
     image1 = get_square()
     img = Image.frombytes('rgba',(20,40), image1)
-    img.save("square.png", format = 'PNG')
-
-
 
     # image2 = get_triangle()
     # img2Bytes = BytesIO()
@@ -50,7 +47,11 @@ def draw_image():
 
     # image1.save(image1, format='PNG')
 
-    img_html.src = img.src
+    my_stream = BytesIO()
+    img.save(my_stream, format="PNG")
+    image_file = File.new([Uint8Array.new(my_stream.getvalue())], "new_image_file.png", {type: "image/png"})
+
+    img_html.src = image_file.src
 
     #canvas.style["display"] = "block"
 
