@@ -1,6 +1,7 @@
 #preview{
     image-rendering: pixelated;
-    height: 100%;
+    height: 50%;
+    width:auto;
 }
 .row{
     display:flex;
