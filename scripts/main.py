@@ -32,45 +32,28 @@ def initDict(path):
     return dictTemp
 
 
-def prepare_canvas(width, height, canvas):
-    ctx = canvas.getContext("2d")
+def draw_image():
+    img_html = js.document.getElementById("preview")
 
-    #canvas.style["width"] = f"{width}px"
-    #canvas.style["height"] = f"{height}px"
+    image1 = draw_square()
+    image2 = draw_triangle()
 
-    #canvas._js.width = width
-    #canvas._js.height = height
-
-    ctx.imageSmoothingEnabled = False
-
-    ctx.clearRect(0, 0, width, height)
-
-    return ctx
-
-def draw_canvas(width, height):
-    canvas = js.document.getElementById("preview")
-
-    ctx = prepare_canvas(width, height, canvas)
-
-    draw_square(ctx)
-    draw_triangle(ctx)
-
-    ctx.fill()
+    img_html.src = image1.src
 
     #canvas.style["display"] = "block"
 
-def draw_square(ctx):
+def draw_square():
     image_file = get_image_from_pyodide(dictSquare[str(squareIndex)],"square.png")
     image = js.document.createElement('img')
     image.src = window.URL.createObjectURL(image_file)
-    js.document.getElementById("square").src = image.src
-    draw_image(ctx, image)
+    return image
+    #draw_image(ctx, image)
 
-def draw_triangle(ctx):
+def draw_triangle():
     image_file = get_image_from_pyodide(dictTriangle[str(triangleIndex)],"triangle.png")
     image = js.document.createElement('img')
     image.src = window.URL.createObjectURL(image_file)
-    draw_image(ctx, image)
+    return image
 
 def get_image_from_pyodide(path, name):
     f = open(path, 'rb')
@@ -171,7 +154,7 @@ def init_data():
 async def main():
     await init_assets()
     init_data()
-    draw_canvas(width, height)
+    draw_image()
     displayIndex("square")
     displayIndex("triangle")
 
