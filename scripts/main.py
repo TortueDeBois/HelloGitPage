@@ -78,7 +78,7 @@ def get_image_from_pyodide(path, name):
     return image_file
 
 def draw_image(ctx, image):
-    ctx.drawImage(image, 0, 0, 40, 20, 0, 0, width, height)
+    ctx.drawImage(image, 0, 0, width, height)
 
 # Buttons
 def squareMinus(ev):
