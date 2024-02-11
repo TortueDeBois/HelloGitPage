@@ -42,7 +42,6 @@ async def draw_image():
     bytes_list = bytearray(array_buf)
     my_bytes = BytesIO(bytes_list) 
     my_image = Image.open(my_bytes)
-    my_image = give_transparency(my_image)
 
     # image2 = get_triangle()
     # img2Bytes = BytesIO()
@@ -55,8 +54,7 @@ async def draw_image():
     bytes_list = bytearray(array_buf)
     my_bytes2 = BytesIO(bytes_list) 
     my_image2 = Image.open(my_bytes2)
-    my_image2 = give_transparency(my_image2)
-    my_image.paste(my_image2,(0,0))
+    my_image.paste(my_image2, (0,0), mask = my_image2)
 
     my_stream = BytesIO()
     my_image.save(my_stream, format="PNG")
@@ -78,21 +76,6 @@ def get_image_from_pyodide(path, name):
     f = open(path, 'rb')
     image_file = File.new([Uint8Array.new(f.read())], name, {"type": "image/png"})
     return image_file
-
-def give_transparency(img):
-    rgba = img.convert("RGBA") 
-    datas = rgba.getdata() 
-  
-    newData = [] 
-    for item in datas: 
-        if item[0] == 255 and item[1] == 255 and item[2] == 255: 
-            newData.append((255, 255, 255, 0)) 
-        else: 
-            newData.append(item)  # other colours remain unchanged 
-  
-    rgba.putdata(newData) 
-    rgba.save("transparent_image.png", "PNG") 
-    return rgba
 
 # Buttons
 async def squareMinus(ev):
