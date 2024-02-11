@@ -55,7 +55,7 @@ async def draw_image():
 
     # image1.save(image1, format='PNG')
 
-    img_html.src = image_file.src
+    img_html.src = image_file
 
     #canvas.style["display"] = "block"
 
