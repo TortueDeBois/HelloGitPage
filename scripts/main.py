@@ -38,26 +38,27 @@ def draw_image():
     img_html = js.document.getElementById("preview")
 
     image1 = get_square()
-    imgBytes = BytesIO()
-    image1.save(imgBytes, format='PNG')
-    bytes = imgBytes.getvalue()
+    img = Image.frombytes('rgba',(20,40), image1)
+    img.save("square.png", format = 'PNG')
 
 
 
-    image2 = get_triangle()
-    img2Bytes = BytesIO()
-    image2.save(img2Bytes, format='PNG')
-    image1.paste(image2, (400,200))
+    # image2 = get_triangle()
+    # img2Bytes = BytesIO()
+    # image2.save(img2Bytes, format='PNG')
+    # image1.paste(image2, (400,200))
 
-    image1.save(image1, format='PNG')
+    # image1.save(image1, format='PNG')
 
-    img_html.src = image1.src
+    img_html.src = img.src
 
     #canvas.style["display"] = "block"
 
 def get_square():
-    image_file = get_image_from_pyodide(dictSquare[str(squareIndex)],"square.png")
-    return image_file
+    #image_file = get_image_from_pyodide(dictSquare[str(squareIndex)],"square.png")
+    f = open(dictSquare[str(squareIndex)], 'rb')
+    bytes = f.read() 
+    return bytes
 
 def get_triangle():
     image_file = get_image_from_pyodide(dictTriangle[str(triangleIndex)],"triangle.png")
