@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 from pyodide.http import pyfetch
 import asyncio
+from PIL import Image
 
 width, height = 400, 200
 
@@ -36,10 +37,13 @@ def draw_image():
     img_html = js.document.getElementById("preview")
 
     image1 = draw_square()
+    img = image1
+
     image2 = draw_triangle()
+    img.paste(image2, (400,200))
     #to do here combinaison d'image voir pillow (pil)
 
-    img_html.src = image1.src
+    img_html.src = img.src
 
     #canvas.style["display"] = "block"
 
