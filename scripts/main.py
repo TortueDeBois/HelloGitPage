@@ -38,10 +38,10 @@ def draw_image():
     img_html = js.document.getElementById("preview")
 
     image1 = get_square()
-    img = Image.frombytes('RGBA', (20, 40),BytesIO(image1), 'raw')
+    img = Image.frombytes('RGBA', (20, 40),BytesIO(image1).getvalue(), 'raw')
 
     image2 = get_triangle()
-    image2 = Image.frombytes('RGBA', (20, 40),BytesIO(image2), 'raw')
+    image2 = Image.frombytes('RGBA', (20, 40),BytesIO(image2).getvalue(), 'raw')
     img.paste(image2, (400,200))
 
     img_html.src = img.src
