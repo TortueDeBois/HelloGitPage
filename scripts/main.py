@@ -64,7 +64,7 @@ def draw_square(ctx):
     image = js.document.createElement('img')
     image.src = window.URL.createObjectURL(image_file)
     js.document.getElementById("square").src = image.src
-    draw_image(ctx, image)
+    draw_image(ctx, image_file)
 
 def draw_triangle(ctx):
     image_file = get_image_from_pyodide(dictTriangle[str(triangleIndex)],"triangle.png")
