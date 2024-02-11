@@ -2,11 +2,12 @@
     height: 50%; 
     width: auto;
 }
-#preview{
-    image-rendering: pixelated;
-    
+.ready{
     height: 400px; 
     width: 800px;
+}
+#preview{
+    image-rendering: pixelated;
 }
 .row{
     display:flex;

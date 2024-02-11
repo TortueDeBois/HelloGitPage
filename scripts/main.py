@@ -60,6 +60,7 @@ async def draw_image():
     image_file = File.new([Uint8Array.new(my_stream.getvalue())], image1.name, {type: "image/png"})
 
     img_html.classList.remove("loading")
+    img_html.classList.add("ready")
     
     img_html.src = window.URL.createObjectURL(image_file)
 
