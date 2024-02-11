@@ -8,6 +8,7 @@ from pathlib import Path
 from pyodide.http import pyfetch
 import asyncio
 from PIL import Image
+from PIL.PngImagePlugin import PngInfo
 
 width, height = 400, 200
 
@@ -36,6 +37,8 @@ def initDict(path):
 async def draw_image():
     img_html = js.document.getElementById("preview")
 
+    metadata = set_metadata()
+
     image1 = get_square()
     array_buf = Uint8Array.new(await image1.arrayBuffer())
     bytes_list = bytearray(array_buf)
@@ -56,7 +59,7 @@ async def draw_image():
     my_image.paste(my_image2, (0,0), mask = my_image2)
 
     my_stream = BytesIO()
-    my_image.save(my_stream, format="PNG")
+    my_image.save(my_stream, format="PNG", pnginfo=metadata)
     image_file = File.new([Uint8Array.new(my_stream.getvalue())], image1.name, {type: "image/png"})
 
     img_html.classList.remove("loading")
@@ -78,6 +81,11 @@ def get_image_from_pyodide(path, name):
     f = open(path, 'rb')
     image_file = File.new([Uint8Array.new(f.read())], name, {"type": "image/png"})
     return image_file
+
+def set_metadata():
+    metadata = PngInfo()
+    metadata.add_text("Original_Creator", "Limezu")
+    return metadata
 
 # Buttons
 async def squareMinus(ev):
