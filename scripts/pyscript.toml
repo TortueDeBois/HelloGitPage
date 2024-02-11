@@ -1,2 +1,2 @@
 name = "Page test sur github"
-packages = ["pillow","pyperclip"]
+packages = ["pillow"]

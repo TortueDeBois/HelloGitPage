@@ -1,4 +1,4 @@
-from js import File, Uint8Array, window
+from js import File, Uint8Array, window, navigator
 import js
 from io import BytesIO
 import json
@@ -120,7 +120,7 @@ def copy_seed(ev):
     seed = "square-" + dictSquare[str(squareIndex)].replace("/assets/square/","").replace(".png","")+ ";"
     seed = seed + "triangle-" + dictTriangle[str(triangleIndex)].replace("/assets/triangle/","").replace(".png","")+";"
     
-    pyperclip.copy(seed)
+    navigator.clipboard.writeText(seed)
 
 # display index
 def displayIndex(shape):
