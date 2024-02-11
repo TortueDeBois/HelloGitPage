@@ -47,7 +47,6 @@ def draw_square():
     image = js.document.createElement('img')
     image.src = window.URL.createObjectURL(image_file)
     return image
-    #draw_image(ctx, image)
 
 def draw_triangle():
     image_file = get_image_from_pyodide(dictTriangle[str(triangleIndex)],"triangle.png")
@@ -59,9 +58,6 @@ def get_image_from_pyodide(path, name):
     f = open(path, 'rb')
     image_file = File.new([Uint8Array.new(f.read())], name, {"type": "image/png"})
     return image_file
-
-def draw_image(ctx, image):
-    ctx.drawImage(image, 0, 0, 40, 20, 0, 0, width, height)
 
 # Buttons
 def squareMinus(ev):
