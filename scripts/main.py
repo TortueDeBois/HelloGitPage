@@ -52,6 +52,9 @@ def draw_canvas(width, height):
 
     ctx = prepare_canvas(width, height, canvas)
     
+    ctx.rect(20, 20, 150, 100)
+    ctx.fillStyle = "red"
+    
     draw_square(ctx)
     draw_triangle(ctx)
 
