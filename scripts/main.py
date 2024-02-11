@@ -49,15 +49,11 @@ def draw_image():
 
 def draw_square():
     image_file = get_image_from_pyodide(dictSquare[str(squareIndex)],"square.png")
-    image = js.document.createElement('img')
-    image.src = window.URL.createObjectURL(image_file)
-    return image
+    return image_file
 
 def draw_triangle():
     image_file = get_image_from_pyodide(dictTriangle[str(triangleIndex)],"triangle.png")
-    image = js.document.createElement('img')
-    image.src = window.URL.createObjectURL(image_file)
-    return image
+    return image_file
 
 def get_image_from_pyodide(path, name):
     f = open(path, 'rb')
