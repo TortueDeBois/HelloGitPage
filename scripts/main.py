@@ -128,7 +128,6 @@ async def init_assets():
     #     for f in os.listdir('/assets/' + file):
     #         js.console.log("\t" + f)
 
-
 def init_data():
     """
     Récupérer toutes les imgs. Selon la nomenclature:
@@ -152,9 +151,9 @@ def init_data():
 async def main():
     await init_assets()
     init_data()
-    draw_image()
     displayIndex("square")
     displayIndex("triangle")
+    draw_image()
 
 
 loop = asyncio.get_event_loop()
