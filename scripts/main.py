@@ -37,12 +37,11 @@ def draw_image():
     img_html = js.document.getElementById("preview")
 
     image1 = get_square()
-    img = Image.frombytes('RGBA', (width,height),open(window.URL.createObjectURL(image1),'rb'), 'raw')
+    img = Image.frombytes('RGBA', (width,height),image1, 'raw')
 
     image2 = get_triangle()
-    image2 = Image.frombytes('RGBA', (width,height),open(window.URL.createObjectURL(image2),'rb'), 'raw')
+    image2 = Image.frombytes('RGBA', (width,height),image2, 'raw')
     img.paste(image2, (400,200))
-    #to do here combinaison d'image voir pillow (pil)
 
     img_html.src = img.src
 
@@ -58,8 +57,9 @@ def get_triangle():
 
 def get_image_from_pyodide(path, name):
     f = open(path, 'rb')
-    image_file = File.new([Uint8Array.new(f.read())], name, {"type": "image/png"})
-    return image_file
+    return f.read()
+    #image_file = File.new([Uint8Array.new(f.read())], name, {"type": "image/png"})
+    #return image_file
 
 # Buttons
 def squareMinus(ev):
