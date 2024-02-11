@@ -8,6 +8,7 @@ from pathlib import Path
 from pyodide.http import pyfetch
 import asyncio
 from PIL import Image
+import clipboard
 
 width, height = 400, 200
 
@@ -112,6 +113,15 @@ async def trianglePlus(ev):
     displayIndex("triangle")
     await draw_image()
 
+def copy_seed(ev):
+    global triangleIndex, dictTriangle
+    global squareIndex, dictSquare
+
+    seed = f"square-{dictSquare[str(squareIndex)].replace("/assets/square/","").replace(".png","")};"
+    seed = seed + f"triangle-{dictTriangle[str(triangleIndex)].replace("/assets/triangle/","").replace(".png","")};"
+    
+    clipboard.copy(seed)
+
 # display index
 def displayIndex(shape):
     if shape == "square":
@@ -172,7 +182,6 @@ async def main():
     displayIndex("square")
     displayIndex("triangle")
     await draw_image()
-
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
