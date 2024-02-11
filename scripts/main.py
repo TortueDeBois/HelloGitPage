@@ -43,17 +43,23 @@ async def draw_image():
     my_bytes = BytesIO(bytes_list) 
     my_image = Image.open(my_bytes)
 
-    my_stream = BytesIO()
-    my_image.save(my_stream, format="PNG")
-    image_file = File.new([Uint8Array.new(my_stream.getvalue())], image1.name, {type: "image/png"})
-
-
     # image2 = get_triangle()
     # img2Bytes = BytesIO()
     # image2.save(img2Bytes, format='PNG')
     # image1.paste(image2, (400,200))
 
     # image1.save(image1, format='PNG')
+    image2 = get_triangle()
+    array_buf = Uint8Array.new(await image2.arrayBuffer())
+    bytes_list = bytearray(array_buf)
+    my_bytes2 = BytesIO(bytes_list) 
+    my_image2 = Image.open(my_bytes)
+    my_image.paste(my_image2, (400,200))
+
+    my_stream = BytesIO()
+    my_image.save(my_stream, format="PNG")
+    image_file = File.new([Uint8Array.new(my_stream.getvalue())], image1.name, {type: "image/png"})
+
 
     img_html.src = window.URL.createObjectURL(image_file)
 
