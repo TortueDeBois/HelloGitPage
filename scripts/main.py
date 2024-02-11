@@ -54,7 +54,7 @@ async def draw_image():
     bytes_list = bytearray(array_buf)
     my_bytes2 = BytesIO(bytes_list) 
     my_image2 = Image.open(my_bytes2)
-    my_image.paste(my_image2)
+    my_image.paste(my_image2,(0,0))
 
     my_stream = BytesIO()
     my_image.save(my_stream, format="PNG")
