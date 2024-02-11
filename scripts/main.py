@@ -60,23 +60,22 @@ def draw_canvas(width, height):
     #canvas.style["display"] = "block"
 
 def draw_square(ctx):
-    image_file = get_image_from_pyodide(dictTriangle[str(triangleIndex)])
+    image_file = get_image_from_pyodide(dictTriangle[str(squareIndex)],"square.png")
     image = js.document.createElement('img')
     # image.src = dictSquare[str(squareIndex)]
     image.src = window.URL.createObjectURL(image_file)
-    js.document.getElementById("square").src = window.URL.createObjectURL(image_file)
     draw_image(ctx, image)
 
 def draw_triangle(ctx):
-    image_file = get_image_from_pyodide(dictTriangle[str(triangleIndex)])
+    image_file = get_image_from_pyodide(dictTriangle[str(triangleIndex)],"triangle.png")
     image = js.document.createElement('img')
     #image.src = dictTriangle[str(triangleIndex)]
     image.src = window.URL.createObjectURL(image_file)
     draw_image(ctx, image)
 
-def get_image_from_pyodide(path):
+def get_image_from_pyodide(path, name):
     f = open(path, 'rb')
-    image_file = File.new([Uint8Array.new(f.read())], "new_image_file.png", {"type": "image/png"})
+    image_file = File.new([Uint8Array.new(f.read())], name, {"type": "image/png"})
     return image_file
 
 def draw_image(ctx, image):
