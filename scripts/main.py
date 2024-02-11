@@ -66,7 +66,7 @@ def squareMinus(ev):
     if squareIndex < 0 :
         squareIndex = len(dictSquare) - 1 
     displayIndex("square")
-    draw_canvas(width,height)
+    draw_image()
     
 def squarePlus(ev):
     global squareIndex
@@ -74,7 +74,7 @@ def squarePlus(ev):
     if squareIndex >= len(dictSquare) :
         squareIndex = 0
     displayIndex("square")
-    draw_canvas(width,height)
+    draw_image()
 
 def triangleMinus(ev):
     global triangleIndex
@@ -82,7 +82,7 @@ def triangleMinus(ev):
     if triangleIndex < 0 :
         triangleIndex = len(dictSquare) - 1 
     displayIndex("triangle")
-    draw_canvas(width,height)
+    draw_image()
 
 def trianglePlus(ev):
     global triangleIndex
@@ -90,7 +90,7 @@ def trianglePlus(ev):
     if triangleIndex >= len(dictTriangle) :
         triangleIndex = 0
     displayIndex("triangle")
-    draw_canvas(width,height)
+    draw_image()
 
 # display index
 def displayIndex(shape):
