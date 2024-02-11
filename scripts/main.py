@@ -8,7 +8,6 @@ from pathlib import Path
 from pyodide.http import pyfetch
 import asyncio
 from PIL import Image
-import pyperclip
 
 width, height = 400, 200
 
