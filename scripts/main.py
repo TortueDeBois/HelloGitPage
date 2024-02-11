@@ -53,7 +53,7 @@ async def draw_image():
     array_buf = Uint8Array.new(await image2.arrayBuffer())
     bytes_list = bytearray(array_buf)
     my_bytes2 = BytesIO(bytes_list) 
-    my_image2 = Image.open(my_bytes2)
+    my_image2 = Image.open(my_bytes2, formats='png')
     my_image.paste(my_image2,(0,0))
 
     my_stream = BytesIO()
