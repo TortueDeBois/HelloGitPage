@@ -73,37 +73,37 @@ def get_image_from_pyodide(path, name):
     return image_file
 
 # Buttons
-def squareMinus(ev):
+async def squareMinus(ev):
     global squareIndex
     squareIndex = squareIndex - 1
     if squareIndex < 0 :
         squareIndex = len(dictSquare) - 1 
     displayIndex("square")
-    draw_image()
+    await draw_image()
     
-def squarePlus(ev):
+async def squarePlus(ev):
     global squareIndex
     squareIndex = squareIndex + 1
     if squareIndex >= len(dictSquare) :
         squareIndex = 0
     displayIndex("square")
-    draw_image()
+    await draw_image()
 
-def triangleMinus(ev):
+async def triangleMinus(ev):
     global triangleIndex
     triangleIndex = triangleIndex - 1
     if triangleIndex < 0 :
         triangleIndex = len(dictSquare) - 1 
     displayIndex("triangle")
-    draw_image()
+    await draw_image()
 
-def trianglePlus(ev):
+async def trianglePlus(ev):
     global triangleIndex
     triangleIndex = triangleIndex + 1
     if triangleIndex >= len(dictTriangle) :
         triangleIndex = 0
     displayIndex("triangle")
-    draw_image()
+    await draw_image()
 
 # display index
 def displayIndex(shape):
@@ -164,7 +164,7 @@ async def main():
     init_data()
     displayIndex("square")
     displayIndex("triangle")
-    draw_image()
+    await draw_image()
 
 
 loop = asyncio.get_event_loop()
