@@ -116,10 +116,10 @@ async def trianglePlus(ev):
 def displayIndex(shape):
     if shape == "square":
         textIndex = js.document.getElementById("squareIndex") 
-        textIndex.innerText = dictSquare[str(squareIndex)].replace("/assets/square/","")
+        textIndex.innerText = dictSquare[str(squareIndex)].replace("/assets/square/","").replace(".png","")
     elif shape == "triangle":
         textIndex = js.document.getElementById("triangleIndex") 
-        textIndex.innerText = dictTriangle[str(triangleIndex)].replace("/assets/triangle/","")
+        textIndex.innerText = dictTriangle[str(triangleIndex)].replace("/assets/triangle/","").replace(".png","")
 
 async def init_assets():
     global data
