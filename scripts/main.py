@@ -37,6 +37,7 @@ def draw_image():
 
     image1 = draw_square()
     image2 = draw_triangle()
+    #to do here combinaison d'image voir pillow (pil)
 
     img_html.src = image1.src
 
