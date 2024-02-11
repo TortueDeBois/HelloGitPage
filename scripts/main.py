@@ -51,10 +51,7 @@ def draw_canvas(width, height):
     canvas = js.document.getElementById("preview")
 
     ctx = prepare_canvas(width, height, canvas)
-    
-    ctx.rect(20, 20, 150, 100)
-    ctx.fillStyle = "red"
-    
+
     draw_square(ctx)
     draw_triangle(ctx)
 
@@ -66,6 +63,7 @@ def draw_square(ctx):
     image_file = get_image_from_pyodide(dictTriangle[str(squareIndex)],"square.png")
     image = js.document.createElement('img')
     image.src = window.URL.createObjectURL(image_file)
+    js.document.getElementById("square").src = image.src
     draw_image(ctx, image)
 
 def draw_triangle(ctx):
