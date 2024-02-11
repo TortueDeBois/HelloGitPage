@@ -13,3 +13,10 @@
     display:flex;
     flex-direction: row;
 }
+.reverse{
+    transform: scaleX(-1);
+}
+.arraow{
+    border: 0px;
+    background: none;
+}
