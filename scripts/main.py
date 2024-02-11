@@ -2,7 +2,6 @@ from js import File, Uint8Array, window
 import js
 import json
 import sys
-import micropip
 import os
 from pathlib import Path
 from pyodide.http import pyfetch
@@ -154,7 +153,6 @@ def init_data():
             dictTriangle = initDict("/assets/" + file)
 
 async def main():
-    await micropip.install("pillow")
     await init_assets()
     init_data()
     draw_image()
