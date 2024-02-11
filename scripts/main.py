@@ -38,13 +38,20 @@ def draw_image():
     img_html = js.document.getElementById("preview")
 
     image1 = get_square()
-    img = Image.frombytes('rgba',(20,40),BytesIO(image1))
+    imgBytes = BytesIO()
+    image1.save(imgBytes, format='PNG')
+    bytes = imgBytes.getvalue()
+
+
 
     image2 = get_triangle()
-    image2 = Image.open(BytesIO(image2))
-    img.paste(image2, (400,200))
+    img2Bytes = BytesIO()
+    image2.save(img2Bytes, format='PNG')
+    image1.paste(image2, (400,200))
 
-    img_html.src = img.src
+    image1.save(image1, format='PNG')
+
+    img_html.src = image1.src
 
     #canvas.style["display"] = "block"
 
