@@ -37,10 +37,10 @@ def draw_image():
     img_html = js.document.getElementById("preview")
 
     image1 = get_square()
-    img = Image.open(image1.src)
+    img = Image.open(window.URL.createObjectURL(image1))
 
     image2 = get_triangle()
-    image2 = Image.open(image2.src)
+    image2 = Image.open(window.URL.createObjectURL(image2))
     img.paste(image2, (400,200))
     #to do here combinaison d'image voir pillow (pil)
 
