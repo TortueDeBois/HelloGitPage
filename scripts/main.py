@@ -41,7 +41,7 @@ async def draw_image():
     array_buf = Uint8Array.new(await image1.arrayBuffer())
     bytes_list = bytearray(array_buf)
     my_bytes = BytesIO(bytes_list) 
-    my_image = Image.open(my_bytes)
+    my_image = Image.open(my_bytes, mode = 'RGBA')
 
     # image2 = get_triangle()
     # img2Bytes = BytesIO()
@@ -53,13 +53,12 @@ async def draw_image():
     array_buf = Uint8Array.new(await image2.arrayBuffer())
     bytes_list = bytearray(array_buf)
     my_bytes2 = BytesIO(bytes_list) 
-    my_image2 = Image.open(my_bytes2)
+    my_image2 = Image.open(my_bytes2, mode = 'RGBA')
     my_image.paste(my_image2,(100,0))
 
     my_stream = BytesIO()
     my_image.save(my_stream, format="PNG")
     image_file = File.new([Uint8Array.new(my_stream.getvalue())], image1.name, {type: "image/png"})
-
 
     img_html.src = window.URL.createObjectURL(image_file)
 
