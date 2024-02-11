@@ -64,6 +64,7 @@ def draw_square(ctx):
     image = js.document.createElement('img')
     # image.src = dictSquare[str(squareIndex)]
     image.src = window.URL.createObjectURL(image_file)
+    js.document.getElementById("square").src = window.URL.createObjectURL(image_file)
     draw_image(ctx, image)
 
 def draw_triangle(ctx):
@@ -118,10 +119,10 @@ def trianglePlus(ev):
 def displayIndex(shape):
     if shape == "square":
         textIndex = js.document.getElementById("squareIndex") 
-        textIndex.innerText = dictSquare[str(squareIndex)].replace("square\\","")
+        textIndex.innerText = dictSquare[str(squareIndex)].replace("/assets/square/","")
     elif shape == "triangle":
         textIndex = js.document.getElementById("triangleIndex") 
-        textIndex.innerText = dictTriangle[str(triangleIndex)].replace("triangle\\","")
+        textIndex.innerText = dictTriangle[str(triangleIndex)].replace("/assets/triangle/","")
 
 async def init_assets():
     global data
