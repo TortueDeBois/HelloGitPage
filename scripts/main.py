@@ -8,7 +8,7 @@ from pathlib import Path
 from pyodide.http import pyfetch
 import asyncio
 from PIL import Image
-import clipboard
+import pyperclip
 
 width, height = 400, 200
 
@@ -120,7 +120,7 @@ def copy_seed(ev):
     seed = "square-" + dictSquare[str(squareIndex)].replace("/assets/square/","").replace(".png","")+ ";"
     seed = seed + "triangle-" + dictTriangle[str(triangleIndex)].replace("/assets/triangle/","").replace(".png","")+";"
     
-    clipboard.copy(seed)
+    pyperclip.copy(seed)
 
 # display index
 def displayIndex(shape):
