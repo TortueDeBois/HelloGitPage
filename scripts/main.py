@@ -60,9 +60,10 @@ def draw_canvas(width, height):
     #canvas.style["display"] = "block"
 
 def draw_square(ctx):
-    # todo chercher image from pyodide
+    image_file = get_image_from_pyodide(dictTriangle[str(triangleIndex)])
     image = js.document.createElement('img')
-    image.src = dictSquare[str(squareIndex)]
+    # image.src = dictSquare[str(squareIndex)]
+    image.src = window.URL.createObjectURL(image_file)
     draw_image(ctx, image)
 
 def draw_triangle(ctx):
