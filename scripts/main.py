@@ -143,7 +143,7 @@ def dl_preview(ev):
     global previewImage
 
     metadata = set_metadata()
-    previewImage = previewImage.resize((200,100))
+    previewImage = previewImage.resize((200,100), Image.BILINEAR)
     my_stream = BytesIO()
     previewImage.save(my_stream, format="PNG", pnginfo=metadata)
     image_file = File.new([Uint8Array.new(my_stream.getvalue())], "unused_file_name.png", {type: "image/png"})
