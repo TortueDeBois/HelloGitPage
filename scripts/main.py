@@ -35,10 +35,9 @@ def initDict(path):
         i = i + 1
     return dictTemp
 
-
 async def draw_image():
     global previewImage
-    
+
     img_html = js.document.getElementById("preview")
 
     metadata = set_metadata()
@@ -49,12 +48,6 @@ async def draw_image():
     my_bytes = BytesIO(bytes_list) 
     my_image = Image.open(my_bytes)
 
-    # image2 = get_triangle()
-    # img2Bytes = BytesIO()
-    # image2.save(img2Bytes, format='PNG')
-    # image1.paste(image2, (400,200))
-
-    # image1.save(image1, format='PNG')
     image2 = get_triangle()
     array_buf = Uint8Array.new(await image2.arrayBuffer())
     bytes_list = bytearray(array_buf)
@@ -65,14 +58,12 @@ async def draw_image():
     my_stream = BytesIO()
     my_image.save(my_stream, format="PNG", pnginfo=metadata)
     image_file = File.new([Uint8Array.new(my_stream.getvalue())], image1.name, {type: "image/png"})
-    previewImage = my_stream
+    previewImage = my_image
 
     img_html.classList.remove("loading")
     img_html.classList.add("ready")
     
     img_html.src = window.URL.createObjectURL(image_file)
-
-    #canvas.style["display"] = "block"
 
 def get_square():
     image_file = get_image_from_pyodide(dictSquare[str(squareIndex)],"square.png")
@@ -149,6 +140,10 @@ def copy_seed(ev):
     navigator.clipboard.writeText(seed)
 
 def dl_preview(ev):
+    metadata = set_metadata()
+    previewImage = previewImage.resize((200,100))
+    my_stream = BytesIO()
+    previewImage.save(my_stream, format="PNG", pnginfo=metadata)
     image_file = File.new([Uint8Array.new(previewImage.getvalue())], "unused_file_name.png", {type: "image/png"})
     url = js.URL.createObjectURL(image_file)
 
