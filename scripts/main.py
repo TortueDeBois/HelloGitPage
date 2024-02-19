@@ -16,8 +16,8 @@ is_selecting = False
 init_sx, init_sy = None, None
 sx, sy = None, None
 
-projectName = "\\HelloGitPage"
-data = ["square\\red.png","square\\blue.png", "triangle\\green.png", "triangle\\yellow.png"]
+projectName = "/HelloGitPage"
+data = ["square/red.png","square/blue.png", "triangle/green.png", "triangle/yellow.png"]
 
 dictSquare = {}
 squareIndex = 0
@@ -144,15 +144,15 @@ async def init_assets():
     os.mkdir(path) 
 
     for info in data:
-        path = "/assets/" + info.split('\\')[0]
+        path = "/assets/" + info.split('/')[0]
 
         if not os.path.exists(path):
             os.mkdir(path) 
 
-        url = "https:\\\\tortuedebois.github.io" + projectName + "\\assets\\" + info
+        url = "https://tortuedebois.github.io" + projectName + "/assets/" + info
         response = await pyfetch(url)
 
-        with open("/assets/" + info.replace("\\","/"), mode="wb") as f:
+        with open("/assets/" + info, mode="wb") as f:
             f.write(await response.bytes())
 
 
