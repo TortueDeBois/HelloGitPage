@@ -166,7 +166,7 @@ async def init_assets():
 def init_data():
     """
     Récupérer toutes les imgs. Selon la nomenclature:
-    $path\\<folder>\\<file>
+    $path/<folder>/<file>
     """
     # data = []
     # for f in os.listdir(str(Path.cwd()) + "/assets/"):
