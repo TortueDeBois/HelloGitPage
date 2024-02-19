@@ -140,6 +140,8 @@ def copy_seed(ev):
     navigator.clipboard.writeText(seed)
 
 def dl_preview(ev):
+    global previewImage
+
     metadata = set_metadata()
     previewImage = previewImage.resize((200,100))
     my_stream = BytesIO()
