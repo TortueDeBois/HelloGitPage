@@ -148,9 +148,10 @@ def copy_seed(ev):
 
 def dl_preview(ev):
     if previewImage is not False:
+        url = js.URL.createObjectURL(previewImage)
         hidden_a = js.document.createElement('a')
-        hidden_a.setAttribute('href', previewImage)
-        hidden_a.setAttribute('download', "text_file")
+        hidden_a.setAttribute('href', url)
+        hidden_a.setAttribute('download', "new_image.png")
         hidden_a.click()
 
 # display index
