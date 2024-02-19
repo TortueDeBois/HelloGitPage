@@ -80,7 +80,7 @@ def get_image_from_pyodide(path, name):
 
 def set_metadata():
     metadata = PngInfo()
-    metadata.add_text("Original_Creator", "Limezu")
+    metadata.add_itxt("Copyright", "Limezu (https://limezu.itch.io/)")
     return metadata
 
 def get_seed():
