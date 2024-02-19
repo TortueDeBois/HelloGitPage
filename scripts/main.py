@@ -63,12 +63,12 @@ async def draw_image():
     my_stream = BytesIO()
     my_image.save(my_stream, format="PNG", pnginfo=metadata)
     image_file = File.new([Uint8Array.new(my_stream.getvalue())], image1.name, {type: "image/png"})
-    previewImage = image_file
+    previewImage = window.URL.createObjectURL(image_file)
 
     img_html.classList.remove("loading")
     img_html.classList.add("ready")
     
-    img_html.src = window.URL.createObjectURL(image_file)
+    img_html.src = previewImage
 
     #canvas.style["display"] = "block"
 
