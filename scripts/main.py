@@ -95,6 +95,7 @@ async def squareMinus(ev):
         squareIndex = len(dictSquare) - 1 
     displayIndex("square")
     await draw_image()
+    change_seed_in_seed_area()
     
 async def squarePlus(ev):
     global squareIndex
@@ -103,6 +104,7 @@ async def squarePlus(ev):
         squareIndex = 0
     displayIndex("square")
     await draw_image()
+    change_seed_in_seed_area()
 
 async def triangleMinus(ev):
     global triangleIndex
@@ -111,6 +113,7 @@ async def triangleMinus(ev):
         triangleIndex = len(dictSquare) - 1 
     displayIndex("triangle")
     await draw_image()
+    change_seed_in_seed_area()
 
 async def trianglePlus(ev):
     global triangleIndex
@@ -119,15 +122,26 @@ async def trianglePlus(ev):
         triangleIndex = 0
     displayIndex("triangle")
     await draw_image()
+    change_seed_in_seed_area()
 
 def copy_seed(ev):
+    seed = get_seed()
+
+    navigator.clipboard.writeText(seed)
+
+def get_seed():
     global triangleIndex, dictTriangle
     global squareIndex, dictSquare
 
-    seed = "square-" + dictSquare[str(squareIndex)].replace("/assets/square/","").replace(".png","")+ ";"
-    seed = seed + "triangle-" + dictTriangle[str(triangleIndex)].replace("/assets/triangle/","").replace(".png","")+";"
-    
-    navigator.clipboard.writeText(seed)
+    seed = "square-" + dictSquare[str(squareIndex)].replace("/assets/square/","").replace(".png","") + ";"
+    seed = seed + "triangle-" + dictTriangle[str(triangleIndex)].replace("/assets/triangle/","").replace(".png","") + ";"
+
+    return seed
+
+def change_seed_in_seed_area():
+    seed = get_seed()
+    textElement = js.document.getElementById("seedArea") 
+    textElement.innerText = seed
 
 # display index
 def displayIndex(shape):
@@ -189,6 +203,7 @@ async def main():
     displayIndex("square")
     displayIndex("triangle")
     await draw_image()
+    change_seed_in_seed_area()
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
