@@ -24,7 +24,7 @@ squareIndex = 0
 dictTriangle = {}
 triangleIndex = 0
 
-previewImage = False
+previewImage = None
 
 def initDict(path):
     dictTemp = {}
@@ -37,6 +37,8 @@ def initDict(path):
 
 
 async def draw_image():
+    global previewImage
+    
     img_html = js.document.getElementById("preview")
 
     metadata = set_metadata()
