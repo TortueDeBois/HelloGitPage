@@ -12,10 +12,42 @@
     </head>
     <body>
         <main>
-            <h1>Hello!</h1>
             <div class="row">
-                <img class="loading" id="preview" height="400" width="800" src="https://github.com/TortueDeBois/HelloGitPage/blob/init_local_assets/assets/static/loading.gif?raw=true">
-                <div>
+                <h1>Hello!</h1>
+                <p>Instruction : Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique nulla consectetur quod necessitatibus corporis assumenda quasi error sunt rerum provident perferendis iure iusto sed laudantium, fuga nihil. Fugit odio temporibus quia nemo laborum ipsa sit laboriosam at, quas voluptatum dolorem, impedit sapiente? Obcaecati amet laudantium, maxime aut nihil dolorum nemo.</p>
+            </div>
+            <div class="row">
+                <div id="leftSelection">
+                    <div class="row">
+                        <h2>Square</h2>
+                    </div>
+                    <div class="row">
+                        <button class="arrow" py-click="squarePlus" >
+                            <img class="arrow reverse" src="https://github.com/TortueDeBois/HelloGitPage/blob/main/assets/static/arrow.png?raw=true">
+                        </button>
+                        <p class="name" id="squareIndex">-1</p>
+                        <button class="arrow" py-click="squareMinus" >
+                            <img class="arrow" src="https://github.com/TortueDeBois/HelloGitPage/blob/main/assets/static/arrow.png?raw=true">
+                        </button>
+                    </div>
+                    <div class="row">
+                        <h2>Triangle</h2>
+                    </div>
+                    <div class="row">
+                        <button class="arrow" py-click="trianglePlus" >
+                            <img class="arrow reverse" src="https://github.com/TortueDeBois/HelloGitPage/blob/main/assets/static/arrow.png?raw=true">
+                        </button>
+                        <p class="name" id="triangleIndex">-1</p>
+                        <button class="arrow" py-click="triangleMinus" >
+                            <img class="arrow" src="https://github.com/TortueDeBois/HelloGitPage/blob/main/assets/static/arrow.png?raw=true">
+                        </button>
+                    </div>
+                </div>
+                <div id="panelCenter">
+                    <img class="loading" id="preview" height="400" width="800" src="https://github.com/TortueDeBois/HelloGitPage/blob/init_local_assets/assets/static/loading.gif?raw=true">
+                    <button py-click="dl_preview">Dl</button>
+                </div>
+                <div  id="rightSelection">
                     <div class="row">
                         <h2>Square</h2>
                     </div>

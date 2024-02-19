@@ -24,6 +24,8 @@ squareIndex = 0
 dictTriangle = {}
 triangleIndex = 0
 
+previewImage = False
+
 def initDict(path):
     dictTemp = {}
     i = 0
@@ -61,6 +63,7 @@ async def draw_image():
     my_stream = BytesIO()
     my_image.save(my_stream, format="PNG", pnginfo=metadata)
     image_file = File.new([Uint8Array.new(my_stream.getvalue())], image1.name, {type: "image/png"})
+    previewImage = image_file
 
     img_html.classList.remove("loading")
     img_html.classList.add("ready")
@@ -86,6 +89,20 @@ def set_metadata():
     metadata = PngInfo()
     metadata.add_text("Original_Creator", "Limezu")
     return metadata
+
+def get_seed():
+    global triangleIndex, dictTriangle
+    global squareIndex, dictSquare
+
+    seed = "square-" + dictSquare[str(squareIndex)].replace("/assets/square/","").replace(".png","") + ";"
+    seed = seed + "triangle-" + dictTriangle[str(triangleIndex)].replace("/assets/triangle/","").replace(".png","") + ";"
+
+    return seed
+
+def change_seed_in_seed_area():
+    seed = get_seed()
+    textElement = js.document.getElementById("seedArea") 
+    textElement.innerText = seed
 
 # Buttons
 async def squareMinus(ev):
@@ -129,19 +146,9 @@ def copy_seed(ev):
 
     navigator.clipboard.writeText(seed)
 
-def get_seed():
-    global triangleIndex, dictTriangle
-    global squareIndex, dictSquare
-
-    seed = "square-" + dictSquare[str(squareIndex)].replace("/assets/square/","").replace(".png","") + ";"
-    seed = seed + "triangle-" + dictTriangle[str(triangleIndex)].replace("/assets/triangle/","").replace(".png","") + ";"
-
-    return seed
-
-def change_seed_in_seed_area():
-    seed = get_seed()
-    textElement = js.document.getElementById("seedArea") 
-    textElement.innerText = seed
+def dl_preview(ev):
+    if previewImage is not False:
+        window.open(previewImage)
 
 # display index
 def displayIndex(shape):
