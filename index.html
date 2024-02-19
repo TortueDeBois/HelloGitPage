@@ -11,39 +11,41 @@
         <script type="py" src="./scripts/main.py"  config="./scripts/pyscript.toml"></script>
     </head>
     <body>
-        <h1>Hello!</h1>
-        <div class="row">
-            <img class="loading" id="preview" height="400" width="800" src="https://github.com/TortueDeBois/HelloGitPage/blob/init_local_assets/assets/static/loading.gif?raw=true">
-            <div>
-                <div class="row">
-                    <h2>Square</h2>
-                </div>
-                <div class="row">
-                    <button class="arrow" py-click="squarePlus" id="squarePlus">
-                        <img class="arrow reverse" src="https://github.com/TortueDeBois/HelloGitPage/blob/main/assets/static/arrow.png?raw=true">
-                    </button>
-                    <p class="name" id="squareIndex">-1</p>
-                    <button class="arrow" py-click="squareMinus" id="squareMinus">
-                        <img class="arrow" src="https://github.com/TortueDeBois/HelloGitPage/blob/main/assets/static/arrow.png?raw=true">
-                    </button>
-                </div>
-                <div class="row">
-                    <h2>Triangle</h2>
-                </div>
-                <div class="row">
-                    <button class="arrow" py-click="trianglePlus" id="trianglePlus">
-                        <img class="arrow reverse" src="https://github.com/TortueDeBois/HelloGitPage/blob/main/assets/static/arrow.png?raw=true">
-                    </button>
-                    <p class="name" id="triangleIndex">-1</p>
-                    <button class="arrow" py-click="triangleMinus" id="triangleMinus">
-                        <img class="arrow" src="https://github.com/TortueDeBois/HelloGitPage/blob/main/assets/static/arrow.png?raw=true">
-                    </button>
+        <main>
+            <h1>Hello!</h1>
+            <div class="row">
+                <img class="loading" id="preview" height="400" width="800" src="https://github.com/TortueDeBois/HelloGitPage/blob/init_local_assets/assets/static/loading.gif?raw=true">
+                <div>
+                    <div class="row">
+                        <h2>Square</h2>
+                    </div>
+                    <div class="row">
+                        <button class="arrow" py-click="squarePlus" id="squarePlus">
+                            <img class="arrow reverse" src="https://github.com/TortueDeBois/HelloGitPage/blob/main/assets/static/arrow.png?raw=true">
+                        </button>
+                        <p class="name" id="squareIndex">-1</p>
+                        <button class="arrow" py-click="squareMinus" id="squareMinus">
+                            <img class="arrow" src="https://github.com/TortueDeBois/HelloGitPage/blob/main/assets/static/arrow.png?raw=true">
+                        </button>
+                    </div>
+                    <div class="row">
+                        <h2>Triangle</h2>
+                    </div>
+                    <div class="row">
+                        <button class="arrow" py-click="trianglePlus" id="trianglePlus">
+                            <img class="arrow reverse" src="https://github.com/TortueDeBois/HelloGitPage/blob/main/assets/static/arrow.png?raw=true">
+                        </button>
+                        <p class="name" id="triangleIndex">-1</p>
+                        <button class="arrow" py-click="triangleMinus" id="triangleMinus">
+                            <img class="arrow" src="https://github.com/TortueDeBois/HelloGitPage/blob/main/assets/static/arrow.png?raw=true">
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row space">
-            <p id="seedArea"></p>
-            <button py-click="copy_seed">Copier la seed</button>
-        </div>
+            <div class="row space">
+                <p id="seedArea"></p>
+                <button py-click="copy_seed">Copier la seed</button>
+            </div>
+        </main>
     </body>
 </html>
