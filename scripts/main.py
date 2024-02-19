@@ -63,12 +63,12 @@ async def draw_image():
     my_stream = BytesIO()
     my_image.save(my_stream, format="PNG", pnginfo=metadata)
     image_file = File.new([Uint8Array.new(my_stream.getvalue())], image1.name, {type: "image/png"})
-    previewImage = window.URL.createObjectURL(image_file)
+    previewImage = my_stream
 
     img_html.classList.remove("loading")
     img_html.classList.add("ready")
     
-    img_html.src = previewImage
+    img_html.src = image_file
 
     #canvas.style["display"] = "block"
 
@@ -148,7 +148,9 @@ def copy_seed(ev):
 
 def dl_preview(ev):
     if previewImage is not False:
-        url = js.URL.createObjectURL(previewImage)
+        image_file = File.new([Uint8Array.new(previewImage.getvalue())], "unused_file_name.png", {type: "image/png"})
+        url = js.URL.createObjectURL(image_file)
+        
         hidden_a = js.document.createElement('a')
         hidden_a.setAttribute('href', url)
         hidden_a.setAttribute('download', "new_image.png")
