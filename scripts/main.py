@@ -146,7 +146,7 @@ def dl_preview(ev):
     previewImage = previewImage.resize((200,100))
     my_stream = BytesIO()
     previewImage.save(my_stream, format="PNG", pnginfo=metadata)
-    image_file = File.new([Uint8Array.new(previewImage.getvalue())], "unused_file_name.png", {type: "image/png"})
+    image_file = File.new([Uint8Array.new(my_stream.getvalue())], "unused_file_name.png", {type: "image/png"})
     url = js.URL.createObjectURL(image_file)
 
     hidden_a = js.document.createElement('a')
