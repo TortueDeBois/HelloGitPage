@@ -68,7 +68,7 @@ async def draw_image():
     img_html.classList.remove("loading")
     img_html.classList.add("ready")
     
-    img_html.src = image_file
+    img_html.src = window.URL.createObjectURL(image_file)
 
     #canvas.style["display"] = "block"
 
@@ -150,7 +150,7 @@ def dl_preview(ev):
     if previewImage is not False:
         image_file = File.new([Uint8Array.new(previewImage.getvalue())], "unused_file_name.png", {type: "image/png"})
         url = js.URL.createObjectURL(image_file)
-        
+
         hidden_a = js.document.createElement('a')
         hidden_a.setAttribute('href', url)
         hidden_a.setAttribute('download', "new_image.png")
