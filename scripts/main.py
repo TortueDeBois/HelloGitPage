@@ -1,8 +1,14 @@
+from js import File, Uint8Array, window, navigator
 import js
+from io import BytesIO
 import json
 import sys
 import os
 from pathlib import Path
+from pyodide.http import pyfetch
+import asyncio
+from PIL import Image
+from PIL.PngImagePlugin import PngInfo
 
 width, height = 400, 200
 
@@ -10,121 +16,205 @@ is_selecting = False
 init_sx, init_sy = None, None
 sx, sy = None, None
 
-projectName = "\\HelloGitPage"
-# data = ["square\\red.png","square\\blue.png", "triangle\\green.png", "triangle\\yellow.png"]
-
-"""
-Récupérer toutes les imgs. Selon la nomenclature:
-$path\\<folder>\\<file>
-"""
-data = []
-for f in os.listdir(str(Path.cwd()) + "\\assets\\"):
-    for file in os.listdir(str(Path.cwd()) + "\\assets\\" + f + "\\"):
-        data.append(f + "\\" + file) #Trouver une alternativeà "append" car risque d'explosion en compléxité (temps ET mémoire)
-print(data)
+projectName = "/HelloGitPage"
+data = ["square/red.png","square/blue.png", "triangle/green.png", "triangle/yellow.png"]
 
 dictSquare = {}
 squareIndex = 0
 dictTriangle = {}
 triangleIndex = 0
 
+previewImage = None
+
 def initDict(path):
     dictTemp = {}
     i = 0
-    for value in data:
-        if path in value :
-            dictTemp[str(i)] = value
-            i = i + 1
+
+    for f in os.listdir(path):
+        dictTemp[str(i)] = path + "/" + f
+        i = i + 1
     return dictTemp
 
+async def draw_image():
+    global previewImage
 
-def prepare_canvas(width, height, canvas):
-    ctx = canvas.getContext("2d")
+    img_html = js.document.getElementById("preview")
 
-    #canvas.style["width"] = f"{width}px"
-    #canvas.style["height"] = f"{height}px"
+    metadata = set_metadata()
 
-    #canvas._js.width = width
-    #canvas._js.height = height
+    image1 = get_square()
+    array_buf = Uint8Array.new(await image1.arrayBuffer())
+    bytes_list = bytearray(array_buf)
+    my_bytes = BytesIO(bytes_list) 
+    my_image = Image.open(my_bytes)
 
-    ctx.imageSmoothingEnabled = False
+    image2 = get_triangle()
+    array_buf = Uint8Array.new(await image2.arrayBuffer())
+    bytes_list = bytearray(array_buf)
+    my_bytes2 = BytesIO(bytes_list) 
+    my_image2 = Image.open(my_bytes2)
+    my_image.paste(my_image2, (0,0), mask = my_image2)
 
-    ctx.clearRect(0, 0, width, height)
+    my_stream = BytesIO()
+    my_image.save(my_stream, format="PNG", pnginfo=metadata)
+    image_file = File.new([Uint8Array.new(my_stream.getvalue())], image1.name, {type: "image/png"})
+    previewImage = my_image
 
-    return ctx
-
-def draw_canvas(width, height):
-    canvas = js.document.getElementById("preview")
-
-    ctx = prepare_canvas(width, height, canvas)
+    img_html.classList.remove("loading")
+    img_html.classList.add("ready")
     
-    draw_square(ctx)
-    draw_triangle(ctx)
+    img_html.src = window.URL.createObjectURL(image_file)
 
-    ctx.fill()
+def get_square():
+    image_file = get_image_from_pyodide(dictSquare[str(squareIndex)],"square.png")
+    return image_file
 
-    #canvas.style["display"] = "block"
+def get_triangle():
+    image_file = get_image_from_pyodide(dictTriangle[str(triangleIndex)],"triangle.png")
+    return image_file
 
-def draw_square(ctx):
-    image = js.document.createElement('img')
-    image.src = projectName + "\\assets\\" + dictSquare[str(squareIndex)]
-    draw_image(ctx, image)
+def get_image_from_pyodide(path, name):
+    f = open(path, 'rb')
+    image_file = File.new([Uint8Array.new(f.read())], name, {"type": "image/png"})
+    return image_file
 
-def draw_triangle(ctx):
-    image = js.document.createElement('img')
-    image.src = projectName + "\\assets\\" + dictTriangle[str(triangleIndex)]
-    draw_image(ctx, image)
+def set_metadata():
+    metadata = PngInfo()
+    metadata.add_itxt("Copyright", "Limezu (https://limezu.itch.io/)")
+    return metadata
 
-def draw_image(ctx, image):
-    ctx.drawImage(image, 0, 0, 40, 20, 0, 0, width, height)
+def get_seed():
+    global triangleIndex, dictTriangle
+    global squareIndex, dictSquare
+
+    seed = "square-" + dictSquare[str(squareIndex)].replace("/assets/square/","").replace(".png","") + ";"
+    seed = seed + "triangle-" + dictTriangle[str(triangleIndex)].replace("/assets/triangle/","").replace(".png","") + ";"
+
+    return seed
+
+def change_seed_in_seed_area():
+    seed = get_seed()
+    textElement = js.document.getElementById("seedArea") 
+    textElement.innerText = seed
 
 # Buttons
-def squareMinus(ev):
+async def squareMinus(ev):
     global squareIndex
     squareIndex = squareIndex - 1
     if squareIndex < 0 :
         squareIndex = len(dictSquare) - 1 
     displayIndex("square")
-    draw_canvas(width,height)
+    await draw_image()
+    change_seed_in_seed_area()
     
-def squarePlus(ev):
+async def squarePlus(ev):
     global squareIndex
     squareIndex = squareIndex + 1
     if squareIndex >= len(dictSquare) :
         squareIndex = 0
     displayIndex("square")
-    draw_canvas(width,height)
+    await draw_image()
+    change_seed_in_seed_area()
 
-def triangleMinus(ev):
+async def triangleMinus(ev):
     global triangleIndex
     triangleIndex = triangleIndex - 1
     if triangleIndex < 0 :
         triangleIndex = len(dictSquare) - 1 
     displayIndex("triangle")
-    draw_canvas(width,height)
+    await draw_image()
+    change_seed_in_seed_area()
 
-def trianglePlus(ev):
+async def trianglePlus(ev):
     global triangleIndex
     triangleIndex = triangleIndex + 1
     if triangleIndex >= len(dictTriangle) :
         triangleIndex = 0
     displayIndex("triangle")
-    draw_canvas(width,height)
+    await draw_image()
+    change_seed_in_seed_area()
+
+def copy_seed(ev):
+    seed = get_seed()
+
+    navigator.clipboard.writeText(seed)
+
+def dl_preview(ev):
+    global previewImage
+
+    metadata = set_metadata()
+    previewImage = previewImage.resize((200,100), Image.NEAREST)
+    my_stream = BytesIO()
+    previewImage.save(my_stream, format="PNG", pnginfo=metadata)
+    image_file = File.new([Uint8Array.new(my_stream.getvalue())], "unused_file_name.png", {type: "image/png"})
+    url = js.URL.createObjectURL(image_file)
+
+    hidden_a = js.document.createElement('a')
+    hidden_a.setAttribute('href', url)
+    hidden_a.setAttribute('download', "new_image.png")
+    hidden_a.click()
 
 # display index
 def displayIndex(shape):
     if shape == "square":
         textIndex = js.document.getElementById("squareIndex") 
-        textIndex.innerText = dictSquare[str(squareIndex)].replace("square\\","")
+        textIndex.innerText = dictSquare[str(squareIndex)].replace("/assets/square/","").replace(".png","")
     elif shape == "triangle":
         textIndex = js.document.getElementById("triangleIndex") 
-        textIndex.innerText = dictTriangle[str(triangleIndex)].replace("triangle\\","")
+        textIndex.innerText = dictTriangle[str(triangleIndex)].replace("/assets/triangle/","").replace(".png","")
 
-def main():
-    draw_canvas(width, height)
+async def init_assets():
+    global data
+    path = "/assets"
+    os.mkdir(path) 
+
+    for info in data:
+        path = "/assets/" + info.split('/')[0]
+
+        if not os.path.exists(path):
+            os.mkdir(path) 
+
+        url = "https://tortuedebois.github.io" + projectName + "/assets/" + info
+        response = await pyfetch(url)
+
+        with open("/assets/" + info, mode="wb") as f:
+            f.write(await response.bytes())
+
+
+    # files = os.listdir('/assets')
+    # for file in files:
+    #     js.console.log(file)
+
+    #     for f in os.listdir('/assets/' + file):
+    #         js.console.log("\t" + f)
+
+def init_data():
+    """
+    Récupérer toutes les imgs. Selon la nomenclature:
+    $path/<folder>/<file>
+    """
+    # data = []
+    # for f in os.listdir(str(Path.cwd()) + "/assets/"):
+    #     for file in os.listdir(str(Path.cwd()) + "/assets/" + f + "/"):
+    #         data.append(f + "/" + file) #Trouver une alternativeà "append" car risque d'explosion en compléxité (temps ET mémoire)
+    # print(data)
+
+    global dictSquare, dictTriangle
+
+    files = os.listdir('/assets')
+    for file in files:
+        if file == "square":
+            dictSquare = initDict("/assets/" + file)
+        elif file == "triangle":
+            dictTriangle = initDict("/assets/" + file)
+
+async def main():
+    await init_assets()
+    init_data()
     displayIndex("square")
     displayIndex("triangle")
+    await draw_image()
+    change_seed_in_seed_area()
 
-dictSquare = initDict("square")
-dictTriangle = initDict("triangle")
-main()
+loop = asyncio.get_event_loop()
+loop.run_until_complete(main())
