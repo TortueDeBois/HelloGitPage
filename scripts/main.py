@@ -18,6 +18,7 @@ sx, sy = None, None
 
 projectName = "/HelloGitPage"
 data = ["square/red.png","square/blue.png", "triangle/green.png", "triangle/yellow.png"]
+order =["square","triangle"]
 
 dictSquare = {}
 squareIndex = 0
@@ -42,12 +43,18 @@ async def draw_image():
 
     metadata = set_metadata()
 
-    js.console.log(len(dictSquare))
+    # generalisation :
+    #  make function from next lines
+    #  follow order
+    #  check case where one dict is empty
+    #  check case where first dict is empty
+     
     image1 = get_square()
-    array_buf = Uint8Array.new(await image1.arrayBuffer())
-    bytes_list = bytearray(array_buf)
-    my_bytes = BytesIO(bytes_list) 
-    my_image = Image.open(my_bytes)
+    my_image = await js_image_to_python_image(image1)
+    # array_buf = Uint8Array.new(await image1.arrayBuffer())
+    # bytes_list = bytearray(array_buf)
+    # my_bytes = BytesIO(bytes_list) 
+    # my_image = Image.open(my_bytes)
 
     image2 = get_triangle()
     array_buf = Uint8Array.new(await image2.arrayBuffer())
@@ -66,6 +73,12 @@ async def draw_image():
     
     img_html.src = window.URL.createObjectURL(image_file)
 
+def set_metadata():
+    metadata = PngInfo()
+    metadata.add_itxt("Copyright", "Réalisé à partir des tiles de Limezu (https://limezu.itch.io/)")
+    return metadata
+
+# Get image from pyodide to an png file used by js
 def get_square():
     image_file = get_image_from_pyodide(dictSquare[str(squareIndex)],"square.png")
     return image_file
@@ -79,10 +92,12 @@ def get_image_from_pyodide(path, name):
     image_file = File.new([Uint8Array.new(f.read())], name, {"type": "image/png"})
     return image_file
 
-def set_metadata():
-    metadata = PngInfo()
-    metadata.add_itxt("Copyright", "Réalisé à partir des tiles de Limezu (https://limezu.itch.io/)")
-    return metadata
+# Transform a png file (js) to an Image from Pil
+async def js_image_to_python_image(jsImage):
+    array_buf = Uint8Array.new(await jsImage.arrayBuffer())
+    bytes_list = bytearray(array_buf)
+    my_bytes = BytesIO(bytes_list) 
+    return Image.open(my_bytes)
 
 def get_seed():
     global triangleIndex, dictTriangle
