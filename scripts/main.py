@@ -116,7 +116,7 @@ async def js_image_to_python_image(jsImage):
 def get_seed():
     seed = ""
     for value in order :
-        seed += '{}-{};'.format(str(value),dictionary[str(value)][indexDict[str(value)]])
+        seed += '{}-{};'.format(str(value),dictionary[str(value)])
         # if value == "square" :
         #     seed += "square-" + dictSquare[str(squareIndex)].replace("/assets/square/","").replace(".png","") + ";"
         # elif value == "triangle" :
@@ -246,6 +246,7 @@ async def main():
     displayIndex("triangle")
     await draw_image()
     change_seed_in_seed_area()
+    print(dictionary["square"])
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
