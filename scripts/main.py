@@ -50,6 +50,8 @@ async def draw_image():
      
     # Get images
     images = await get_images()
+    image_name = images[0].name
+    images = convert_to_python_image(images)
     #image1 = get_square()
     #my_image = await js_image_to_python_image(image1)
 
@@ -59,7 +61,6 @@ async def draw_image():
     # paste an image on another
     #my_image.paste(my_image2, (0,0), mask = my_image2)
     my_image = images[0]
-    print(len(images))
     for x in range(1,len(images)):
         my_image.paste(images[x], (0,0), mask = images[x])
 
@@ -69,7 +70,7 @@ async def draw_image():
     previewImage = my_image
 
     # convert it in js png file
-    image_file = File.new([Uint8Array.new(my_stream.getvalue())], my_image.name, {type: "image/png"})
+    image_file = File.new([Uint8Array.new(my_stream.getvalue())], image_name, {type: "image/png"})
     
     # only useful with the first loading
     img_html.classList.remove("loading")
@@ -86,9 +87,14 @@ async def get_images():
             image = get_square()
         elif x == "triangle" :
             image = get_triangle()
-        python_image = await js_image_to_python_image(image)
-        images.append(python_image)
+        images.append(image)
 
+    return images
+
+async def convert_to_python_image(images):
+    for x in range(len(images)):
+        images[x] = await js_image_to_python_image(images[x])
+    
     return images
 
 def set_metadata():
