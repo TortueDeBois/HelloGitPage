@@ -18,7 +18,7 @@ sx, sy = None, None
 
 projectName = "/HelloGitPage"
 data = ["square/red.png","square/blue.png", "triangle/green.png", "triangle/yellow.png"]
-order =["square","triangle"]
+order = ["square","triangle"]
 
 dictSquare = {}
 squareIndex = 0
@@ -49,14 +49,18 @@ async def draw_image():
     #  check case where first dict is empty
      
     # Get images
-    image1 = get_square()
-    my_image = await js_image_to_python_image(image1)
+    images = await get_images()
+    #image1 = get_square()
+    #my_image = await js_image_to_python_image(image1)
 
-    image2 = get_triangle()
-    my_image2 = await js_image_to_python_image(image2)
+    #image2 = get_triangle()
+    #my_image2 = await js_image_to_python_image(image2)
 
     # paste an image on another
-    my_image.paste(my_image2, (0,0), mask = my_image2)
+    #my_image.paste(my_image2, (0,0), mask = my_image2)
+    my_image = images[0]
+    for x in range(1,len(images)):
+        my_image.paste(images[x], (0,0), mask = images[x])
 
     # store the final image
     my_stream = BytesIO()
@@ -72,6 +76,19 @@ async def draw_image():
     
     # change html image src
     img_html.src = window.URL.createObjectURL(image_file)
+
+async def get_images():
+    images = []
+
+    for x in order:
+        if x is "square" :
+            image = get_square()
+        elif x is "triangle" :
+            image = get_triangle()
+        python_image = await js_image_to_python_image(image)
+        images.append(python_image)
+
+    return images
 
 def set_metadata():
     metadata = PngInfo()
