@@ -44,7 +44,6 @@ async def draw_image():
     metadata = set_metadata()
 
     # generalisation :
-    #  make function from next lines
     #  follow order
     #  check case where one dict is empty
     #  check case where first dict is empty
@@ -117,37 +116,42 @@ def change_seed_in_seed_area():
 # Buttons
 async def squareMinus(ev):
     global squareIndex
-    squareIndex = squareIndex - 1
-    if squareIndex < 0 :
-        squareIndex = len(dictSquare) - 1 
-    displayIndex("square")
-    await draw_image()
-    change_seed_in_seed_area()
+    # squareIndex = squareIndex - 1
+    # if squareIndex < 0 :
+    #     squareIndex = len(dictSquare) - 1 
+    await index_change_operation(dictSquare, squareIndex, -1, "square")
     
 async def squarePlus(ev):
     global squareIndex
-    squareIndex = squareIndex + 1
-    if squareIndex >= len(dictSquare) :
-        squareIndex = 0
-    displayIndex("square")
-    await draw_image()
-    change_seed_in_seed_area()
+    # squareIndex = squareIndex + 1
+    # if squareIndex >= len(dictSquare) :
+    #     squareIndex = 0
+    await index_change_operation(dictSquare, squareIndex, 1, "square")
 
 async def triangleMinus(ev):
     global triangleIndex
-    triangleIndex = triangleIndex - 1
-    if triangleIndex < 0 :
-        triangleIndex = len(dictSquare) - 1 
-    displayIndex("triangle")
-    await draw_image()
-    change_seed_in_seed_area()
+    # triangleIndex = triangleIndex - 1
+    # if triangleIndex < 0 :
+    #     triangleIndex = len(dictSquare) - 1 
+    await index_change_operation(dictTriangle, triangleIndex, -1, "triangle")
 
 async def trianglePlus(ev):
     global triangleIndex
-    triangleIndex = triangleIndex + 1
-    if triangleIndex >= len(dictTriangle) :
-        triangleIndex = 0
-    displayIndex("triangle")
+    # triangleIndex = triangleIndex + 1
+    # if triangleIndex >= len(dictTriangle) :
+    #     triangleIndex = 0
+    await index_change_operation(dictTriangle, triangleIndex, 1, "triangle")
+
+async def index_change_operation(dictionary, index, operation, nameIndex):
+    index += operation
+    if operation < 0 and index < 0 :
+        index = len(dictionary) - 1
+
+    elif operation > 0 and index >= len(dictionary) :
+        index = 0
+
+
+    displayIndex(nameIndex)
     await draw_image()
     change_seed_in_seed_area()
 
