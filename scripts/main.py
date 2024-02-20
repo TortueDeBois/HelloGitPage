@@ -22,10 +22,6 @@ order = ["square","triangle"]
 
 indexDict = {}
 dictionary = {}
-dictSquare = {}
-squareIndex = 0
-dictTriangle = {}
-triangleIndex = 0
 
 previewImage = None
 
@@ -74,10 +70,6 @@ async def get_images():
 
     for value in order:
         image = get_image(value)
-        # if x == "square" :
-        #     image = get_square()
-        # elif x == "triangle" :
-        #     image = get_triangle()
         images.append(image)
 
     return images
@@ -94,14 +86,9 @@ def set_metadata():
     return metadata
 
 # Get image from pyodide to an png file used by js
-
 def get_image(shape):
     image_file = get_image_from_pyodide(dictionary[str(shape)][str(indexDict[str(shape)])], str(shape) + ".png")
     return image_file
-
-# def get_triangle():
-#     image_file = get_image_from_pyodide(dictTriangle[str(triangleIndex)],"triangle.png")
-#     return image_file
 
 def get_image_from_pyodide(path, name):
     f = open(path, 'rb')
@@ -119,10 +106,6 @@ def get_seed():
     seed = ""
     for value in order :
         seed += '{}-{};'.format(str(value), dictionary[str(value)][str(indexDict[str(value)])].replace("/assets/"+value+"/","").replace(".png",""))
-        # if value == "square" :
-        #     seed += "square-" + dictSquare[str(squareIndex)].replace("/assets/square/","").replace(".png","") + ";"
-        # elif value == "triangle" :
-        #     seed += "triangle-" + dictTriangle[str(triangleIndex)].replace("/assets/triangle/","").replace(".png","") + ";"
 
     return seed
 
@@ -225,17 +208,13 @@ def init_data():
     #         data.append(f + "/" + file) #Trouver une alternativeà "append" car risque d'explosion en compléxité (temps ET mémoire)
     # print(data)
 
-    global dictSquare, dictTriangle, dictionary, indexDict
+    global dictionary, indexDict
 
     files = os.listdir('/assets')
     for file in files:
         if file not in dictionary :
             dictionary[str(file)] = initDict("/assets/" + file)
             indexDict[str(file)] = 0
-        if file == "square":
-            dictSquare = initDict("/assets/" + file)
-        elif file == "triangle":
-            dictTriangle = initDict("/assets/" + file)
 
 async def main():
     await init_assets()
