@@ -252,7 +252,7 @@ async def main():
     await draw_image()
     change_seed_in_seed_area()
     for x in dictionary:
-        print(dictionary[str(x)])
+        print(len(dictionary[str(x)]))
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
