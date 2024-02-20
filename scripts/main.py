@@ -59,6 +59,7 @@ async def draw_image():
     # paste an image on another
     #my_image.paste(my_image2, (0,0), mask = my_image2)
     my_image = images[0]
+    print(len(images))
     for x in range(1,len(images)):
         my_image.paste(images[x], (0,0), mask = images[x])
 
