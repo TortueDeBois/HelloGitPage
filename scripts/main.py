@@ -72,11 +72,12 @@ async def draw_image():
 async def get_images():
     images = []
 
-    for x in order:
-        if x == "square" :
-            image = get_square()
-        elif x == "triangle" :
-            image = get_triangle()
+    for value in order:
+        image = get_image(value)
+        # if x == "square" :
+        #     image = get_square()
+        # elif x == "triangle" :
+        #     image = get_triangle()
         images.append(image)
 
     return images
@@ -93,13 +94,14 @@ def set_metadata():
     return metadata
 
 # Get image from pyodide to an png file used by js
-def get_square():
-    image_file = get_image_from_pyodide(dictSquare[str(squareIndex)],"square.png")
+
+def get_image(shape):
+    image_file = get_image_from_pyodide(dictionary[str(shape)][str(indexDict[str(shape)])], str(shape) + ".png")
     return image_file
 
-def get_triangle():
-    image_file = get_image_from_pyodide(dictTriangle[str(triangleIndex)],"triangle.png")
-    return image_file
+# def get_triangle():
+#     image_file = get_image_from_pyodide(dictTriangle[str(triangleIndex)],"triangle.png")
+#     return image_file
 
 def get_image_from_pyodide(path, name):
     f = open(path, 'rb')
@@ -116,7 +118,7 @@ async def js_image_to_python_image(jsImage):
 def get_seed():
     seed = ""
     for value in order :
-        seed += '{}-{};'.format(str(value),dictionary[str(value)][str(indexDict[str(value)])])
+        seed += '{}-{};'.format(str(value), dictionary[str(value)][str(indexDict[str(value)])].replace("/assets/"+value+"/","").replace(".png",""))
         # if value == "square" :
         #     seed += "square-" + dictSquare[str(squareIndex)].replace("/assets/square/","").replace(".png","") + ";"
         # elif value == "triangle" :
@@ -246,7 +248,6 @@ async def main():
     displayIndex("triangle")
     await draw_image()
     change_seed_in_seed_area()
-    print(dictionary["square"]["1"])
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
