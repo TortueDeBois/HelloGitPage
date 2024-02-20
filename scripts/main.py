@@ -116,7 +116,7 @@ async def js_image_to_python_image(jsImage):
 def get_seed():
     seed = ""
     for value in order :
-        seed += '{}-{};'.format(str(value),dictionary[str(value)])
+        seed += '{}-{};'.format(str(value),dictionary[str(value)][str(indexDict[str(value)])])
         # if value == "square" :
         #     seed += "square-" + dictSquare[str(squareIndex)].replace("/assets/square/","").replace(".png","") + ";"
         # elif value == "triangle" :
