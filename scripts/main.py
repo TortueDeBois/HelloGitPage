@@ -42,24 +42,12 @@ async def draw_image():
     img_html = js.document.getElementById("preview")
 
     metadata = set_metadata()
-
-    # generalisation :
-    #  follow order
-    #  check case where one dict is empty
-    #  check case where first dict is empty
      
     # Get images
     images = await get_images()
     image_name = images[0].name
     images = await convert_to_python_image(images)
-    #image1 = get_square()
-    #my_image = await js_image_to_python_image(image1)
-
-    #image2 = get_triangle()
-    #my_image2 = await js_image_to_python_image(image2)
-
-    # paste an image on another
-    #my_image.paste(my_image2, (0,0), mask = my_image2)
+    
     my_image = images[0]
     for x in range(1,len(images)):
         my_image.paste(images[x], (0,0), mask = images[x])
@@ -127,11 +115,13 @@ def get_seed():
     global order
     global triangleIndex, dictTriangle
     global squareIndex, dictSquare
-    
-    # TODO use order in seed creation 
 
-    seed = "square-" + dictSquare[str(squareIndex)].replace("/assets/square/","").replace(".png","") + ";"
-    seed = seed + "triangle-" + dictTriangle[str(triangleIndex)].replace("/assets/triangle/","").replace(".png","") + ";"
+    seed = ""
+    for value in order :
+        if value == "square" :
+            seed += "square-" + dictSquare[str(squareIndex)].replace("/assets/square/","").replace(".png","") + ";"
+        elif value == "triangle" :
+            seed += "triangle-" + dictTriangle[str(triangleIndex)].replace("/assets/triangle/","").replace(".png","") + ";"
 
     return seed
 
