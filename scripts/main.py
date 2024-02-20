@@ -186,12 +186,8 @@ def dl_preview(ev):
 
 # display index
 def displayIndex(shape):
-    if shape == "square":
-        textIndex = js.document.getElementById("squareIndex") 
-        textIndex.innerText = dictSquare[str(squareIndex)].replace("/assets/square/","").replace(".png","")
-    elif shape == "triangle":
-        textIndex = js.document.getElementById("triangleIndex") 
-        textIndex.innerText = dictTriangle[str(triangleIndex)].replace("/assets/triangle/","").replace(".png","")
+    textIndex = js.document.getElementById(str(shape)+"Index") 
+    textIndex.innerText = dictionary[str(shape)][str(indexDict[str(shape)])].replace("/assets/"+str(shape)+"/","").replace(".png","")
 
 async def init_assets():
     global data
