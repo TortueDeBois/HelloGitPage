@@ -246,7 +246,7 @@ async def main():
     displayIndex("triangle")
     await draw_image()
     change_seed_in_seed_area()
-    print(dictionary["square"])
+    print(dictionary["square"]["1"])
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
