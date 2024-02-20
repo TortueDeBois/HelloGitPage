@@ -20,6 +20,7 @@ projectName = "/HelloGitPage"
 data = ["square/red.png","square/blue.png", "triangle/green.png", "triangle/yellow.png"]
 order = ["square","triangle"]
 
+dictionary = {}
 dictSquare = {}
 squareIndex = 0
 dictTriangle = {}
@@ -232,10 +233,12 @@ def init_data():
     #         data.append(f + "/" + file) #Trouver une alternativeà "append" car risque d'explosion en compléxité (temps ET mémoire)
     # print(data)
 
-    global dictSquare, dictTriangle
+    global dictSquare, dictTriangle, dictionary
 
     files = os.listdir('/assets')
     for file in files:
+        if file not in dictionary :
+            dictionary[str(file)] = initDict("/assets/" + file)
         if file == "square":
             dictSquare = initDict("/assets/" + file)
         elif file == "triangle":
@@ -248,6 +251,8 @@ async def main():
     displayIndex("triangle")
     await draw_image()
     change_seed_in_seed_area()
+    for x in dictionary:
+        print(dictionary[str(x)])
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
