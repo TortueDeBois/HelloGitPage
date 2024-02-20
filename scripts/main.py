@@ -150,6 +150,9 @@ async def triangleMinus(ev):
 
 async def trianglePlus(ev):
     global dictionary, indexDict
+    print(indexDict["triangle"])
+    print(dictionary["triangle"])
+
     indexDict["triangle"] = await index_change_operation(dictionary["triangle"], indexDict["triangle"], 1)
     await after_index_change("triangle")
 
