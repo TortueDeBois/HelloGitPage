@@ -81,9 +81,9 @@ async def get_images():
     images = []
 
     for x in order:
-        if x is "square" :
+        if x == "square" :
             image = get_square()
-        elif x is "triangle" :
+        elif x == "triangle" :
             image = get_triangle()
         python_image = await js_image_to_python_image(image)
         images.append(python_image)
