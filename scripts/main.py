@@ -60,11 +60,11 @@ async def draw_image():
     my_image.paste(my_image2, (0,0), mask = my_image2)
 
     # store the final image
+    my_stream = BytesIO()
     my_image.save(my_stream, format="PNG", pnginfo=metadata)
     previewImage = my_image
 
     # convert it in js png file
-    my_stream = BytesIO()
     image_file = File.new([Uint8Array.new(my_stream.getvalue())], image1.name, {type: "image/png"})
     
     # only useful with the first loading
