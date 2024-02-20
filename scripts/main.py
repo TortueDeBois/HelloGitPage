@@ -42,6 +42,7 @@ async def draw_image():
 
     metadata = set_metadata()
 
+    js.console.log(len(dictSquare))
     image1 = get_square()
     array_buf = Uint8Array.new(await image1.arrayBuffer())
     bytes_list = bytearray(array_buf)
