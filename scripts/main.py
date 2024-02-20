@@ -51,7 +51,7 @@ async def draw_image():
     # Get images
     images = await get_images()
     image_name = images[0].name
-    images = convert_to_python_image(images)
+    images = await convert_to_python_image(images)
     #image1 = get_square()
     #my_image = await js_image_to_python_image(image1)
 
