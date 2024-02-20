@@ -17,9 +17,10 @@ init_sx, init_sy = None, None
 sx, sy = None, None
 
 projectName = "/HelloGitPage"
-data = ["square/red.png","square/blue.png", "triangle/green.png", "triangle/yellow.png"]
+data = ['square/blue.png', 'square/purple.png', 'square/red.png', 'triangle/green.png', 'triangle/yellow.png']
 order = ["square","triangle"]
 
+indexDict = {}
 dictionary = {}
 dictSquare = {}
 squareIndex = 0
@@ -143,13 +144,13 @@ async def squarePlus(ev):
     await after_index_change("square")
 
 async def triangleMinus(ev):
-    global triangleIndex
-    triangleIndex = await index_change_operation(dictTriangle, triangleIndex, -1)
+    global dictionary, indexDict
+    indexDict["triangle"] = await index_change_operation(dictionary["triangle"], indexDict["triangle"], -1)
     await after_index_change("triangle")
 
 async def trianglePlus(ev):
-    global triangleIndex
-    triangleIndex = await index_change_operation(dictTriangle, triangleIndex, 1)
+    global dictionary, indexDict
+    indexDict["triangle"] = await index_change_operation(dictionary["triangle"], indexDict["triangle"], 1)
     await after_index_change("triangle")
 
 async def index_change_operation(dictionary, index, operation):
@@ -233,12 +234,13 @@ def init_data():
     #         data.append(f + "/" + file) #Trouver une alternativeà "append" car risque d'explosion en compléxité (temps ET mémoire)
     # print(data)
 
-    global dictSquare, dictTriangle, dictionary
+    global dictSquare, dictTriangle, dictionary, indexDict
 
     files = os.listdir('/assets')
     for file in files:
         if file not in dictionary :
             dictionary[str(file)] = initDict("/assets/" + file)
+            indexDict[str(file)] = 0
         if file == "square":
             dictSquare = initDict("/assets/" + file)
         elif file == "triangle":
@@ -251,8 +253,6 @@ async def main():
     displayIndex("triangle")
     await draw_image()
     change_seed_in_seed_area()
-    for x in dictionary:
-        print(len(dictionary[str(x)]))
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
