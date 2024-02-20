@@ -68,7 +68,7 @@ async def draw_image():
     previewImage = my_image
 
     # convert it in js png file
-    image_file = File.new([Uint8Array.new(my_stream.getvalue())], image1.name, {type: "image/png"})
+    image_file = File.new([Uint8Array.new(my_stream.getvalue())], my_image.name, {type: "image/png"})
     
     # only useful with the first loading
     img_html.classList.remove("loading")
