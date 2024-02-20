@@ -114,16 +114,13 @@ async def js_image_to_python_image(jsImage):
     return Image.open(my_bytes)
 
 def get_seed():
-    global order
-    global triangleIndex, dictTriangle
-    global squareIndex, dictSquare
-
     seed = ""
     for value in order :
-        if value == "square" :
-            seed += "square-" + dictSquare[str(squareIndex)].replace("/assets/square/","").replace(".png","") + ";"
-        elif value == "triangle" :
-            seed += "triangle-" + dictTriangle[str(triangleIndex)].replace("/assets/triangle/","").replace(".png","") + ";"
+        seed += '{0}-{1}'.format(str(value),dictionary[str(value)][indexDict[str(value)]])
+        # if value == "square" :
+        #     seed += "square-" + dictSquare[str(squareIndex)].replace("/assets/square/","").replace(".png","") + ";"
+        # elif value == "triangle" :
+        #     seed += "triangle-" + dictTriangle[str(triangleIndex)].replace("/assets/triangle/","").replace(".png","") + ";"
 
     return seed
 
@@ -134,26 +131,19 @@ def change_seed_in_seed_area():
 
 # Buttons
 async def squareMinus(ev):
-    global squareIndex
-    squareIndex = await index_change_operation(dictSquare, squareIndex, -1)
+    indexDict.update({"square": await index_change_operation(dictionary["square"], indexDict["square"], -1)})
     await after_index_change("square")
     
 async def squarePlus(ev):
-    global squareIndex
-    squareIndex = await index_change_operation(dictSquare, squareIndex, 1)
+    indexDict.update({"square": await index_change_operation(dictionary["square"], indexDict["square"], 1)})
     await after_index_change("square")
 
 async def triangleMinus(ev):
-    global dictionary, indexDict
-    indexDict["triangle"] = await index_change_operation(dictionary["triangle"], indexDict["triangle"], -1)
+    indexDict.update({"triangle": await index_change_operation(dictionary["triangle"], indexDict["triangle"], -1)})
     await after_index_change("triangle")
 
 async def trianglePlus(ev):
-    print(indexDict["triangle"])
-    print(dictionary["triangle"])
-
     indexDict.update({"triangle": await index_change_operation(dictionary["triangle"], indexDict["triangle"], 1)})
-    print(indexDict["triangle"])
     await after_index_change("triangle")
 
 async def index_change_operation(dictionary, index, operation):
