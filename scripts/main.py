@@ -49,28 +49,29 @@ async def draw_image():
     #  check case where one dict is empty
     #  check case where first dict is empty
      
+    # Get images
     image1 = get_square()
     my_image = await js_image_to_python_image(image1)
-    # array_buf = Uint8Array.new(await image1.arrayBuffer())
-    # bytes_list = bytearray(array_buf)
-    # my_bytes = BytesIO(bytes_list) 
-    # my_image = Image.open(my_bytes)
 
     image2 = get_triangle()
-    array_buf = Uint8Array.new(await image2.arrayBuffer())
-    bytes_list = bytearray(array_buf)
-    my_bytes2 = BytesIO(bytes_list) 
-    my_image2 = Image.open(my_bytes2)
+    my_image2 = await js_image_to_python_image(image2)
+
+    # paste an image on another
     my_image.paste(my_image2, (0,0), mask = my_image2)
 
-    my_stream = BytesIO()
+    # store the final image
     my_image.save(my_stream, format="PNG", pnginfo=metadata)
-    image_file = File.new([Uint8Array.new(my_stream.getvalue())], image1.name, {type: "image/png"})
     previewImage = my_image
 
+    # convert it in js png file
+    my_stream = BytesIO()
+    image_file = File.new([Uint8Array.new(my_stream.getvalue())], image1.name, {type: "image/png"})
+    
+    # only useful with the first loading
     img_html.classList.remove("loading")
     img_html.classList.add("ready")
     
+    # change html image src
     img_html.src = window.URL.createObjectURL(image_file)
 
 def set_metadata():
@@ -160,6 +161,7 @@ def dl_preview(ev):
 
     metadata = set_metadata()
     previewImage = previewImage.resize((200,100), Image.NEAREST)
+
     my_stream = BytesIO()
     previewImage.save(my_stream, format="PNG", pnginfo=metadata)
     image_file = File.new([Uint8Array.new(my_stream.getvalue())], "unused_file_name.png", {type: "image/png"})
