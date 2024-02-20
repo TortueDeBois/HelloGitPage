@@ -100,8 +100,11 @@ async def js_image_to_python_image(jsImage):
     return Image.open(my_bytes)
 
 def get_seed():
+    global order
     global triangleIndex, dictTriangle
     global squareIndex, dictSquare
+    
+    # TODO use order in seed creation 
 
     seed = "square-" + dictSquare[str(squareIndex)].replace("/assets/square/","").replace(".png","") + ";"
     seed = seed + "triangle-" + dictTriangle[str(triangleIndex)].replace("/assets/triangle/","").replace(".png","") + ";"
@@ -116,33 +119,21 @@ def change_seed_in_seed_area():
 # Buttons
 async def squareMinus(ev):
     global squareIndex
-    # squareIndex = squareIndex - 1
-    # if squareIndex < 0 :
-    #     squareIndex = len(dictSquare) - 1 
     squareIndex = await index_change_operation(dictSquare, squareIndex, -1)
     await after_index_change("square")
     
 async def squarePlus(ev):
     global squareIndex
-    # squareIndex = squareIndex + 1
-    # if squareIndex >= len(dictSquare) :
-    #     squareIndex = 0
     squareIndex = await index_change_operation(dictSquare, squareIndex, 1)
     await after_index_change("square")
 
 async def triangleMinus(ev):
     global triangleIndex
-    # triangleIndex = triangleIndex - 1
-    # if triangleIndex < 0 :
-    #     triangleIndex = len(dictSquare) - 1 
     triangleIndex = await index_change_operation(dictTriangle, triangleIndex, -1)
     await after_index_change("triangle")
 
 async def trianglePlus(ev):
     global triangleIndex
-    # triangleIndex = triangleIndex + 1
-    # if triangleIndex >= len(dictTriangle) :
-    #     triangleIndex = 0
     triangleIndex = await index_change_operation(dictTriangle, triangleIndex, 1)
     await after_index_change("triangle")
 
