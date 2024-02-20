@@ -18,7 +18,7 @@ sx, sy = None, None
 
 projectName = "/HelloGitPage"
 data = ["square/red.png","square/blue.png", "triangle/green.png", "triangle/yellow.png"]
-order = ["triangle", "square"]
+order = ["square","triangle"]
 
 dictSquare = {}
 squareIndex = 0
