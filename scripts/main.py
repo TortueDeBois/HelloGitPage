@@ -143,7 +143,8 @@ async def trianglePlus(ev):
     await index_change_operation(dictTriangle, triangleIndex, 1, "triangle")
 
 async def index_change_operation(dictionary, index, operation, nameIndex):
-    index += operation
+    global index
+    index = index + operation
     if operation < 0 and index < 0 :
         index = len(dictionary) - 1
 
