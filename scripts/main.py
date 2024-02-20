@@ -154,6 +154,7 @@ async def trianglePlus(ev):
     print(dictionary["triangle"])
 
     indexDict["triangle"] = await index_change_operation(dictionary["triangle"], indexDict["triangle"], 1)
+    print(indexDict["triangle"])
     await after_index_change("triangle")
 
 async def index_change_operation(dictionary, index, operation):
