@@ -119,38 +119,44 @@ async def squareMinus(ev):
     # squareIndex = squareIndex - 1
     # if squareIndex < 0 :
     #     squareIndex = len(dictSquare) - 1 
-    await index_change_operation(dictSquare, squareIndex, -1, "square")
+    squareIndex = await index_change_operation(dictSquare, squareIndex, -1)
+    await after_index_change("square")
     
 async def squarePlus(ev):
     global squareIndex
     # squareIndex = squareIndex + 1
     # if squareIndex >= len(dictSquare) :
     #     squareIndex = 0
-    await index_change_operation(dictSquare, squareIndex, 1, "square")
+    squareIndex = await index_change_operation(dictSquare, squareIndex, 1)
+    await after_index_change("square")
 
 async def triangleMinus(ev):
     global triangleIndex
     # triangleIndex = triangleIndex - 1
     # if triangleIndex < 0 :
     #     triangleIndex = len(dictSquare) - 1 
-    await index_change_operation(dictTriangle, triangleIndex, -1, "triangle")
+    triangleIndex = await index_change_operation(dictTriangle, triangleIndex, -1)
+    await after_index_change("triangle")
 
 async def trianglePlus(ev):
     global triangleIndex
     # triangleIndex = triangleIndex + 1
     # if triangleIndex >= len(dictTriangle) :
     #     triangleIndex = 0
-    await index_change_operation(dictTriangle, triangleIndex, 1, "triangle")
+    triangleIndex = await index_change_operation(dictTriangle, triangleIndex, 1)
+    await after_index_change("triangle")
 
-async def index_change_operation(dictionary, index, operation, nameIndex):
+async def index_change_operation(dictionary, index, operation):
     index += operation
     if operation < 0 and index < 0 :
         index = len(dictionary) - 1
 
     elif operation > 0 and index >= len(dictionary) :
         index = 0
+    
+    return index
 
-
+async def after_index_change(nameIndex):
     displayIndex(nameIndex)
     await draw_image()
     change_seed_in_seed_area()
