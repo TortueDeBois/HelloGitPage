@@ -219,8 +219,8 @@ def init_data():
 async def main():
     await init_assets()
     init_data()
-    displayIndex("square")
-    displayIndex("triangle")
+    for value in order :
+        displayIndex(value)
     await draw_image()
     change_seed_in_seed_area()
 
