@@ -116,7 +116,7 @@ def change_seed_in_seed_area():
 
 # Buttons
 async def plus(event):
-    print(event)
+    print(event.target)
     #indexDict.update({str(shape): await index_change_operation(dictionary[str(shape)], indexDict[str(shape)], 1)})
     #await after_index_change(str(shape))
 
