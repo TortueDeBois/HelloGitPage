@@ -117,8 +117,8 @@ def change_seed_in_seed_area():
 # Buttons
 async def plus(ev, shape):
     print(shape)
-    indexDict.update({str(shape): await index_change_operation(dictionary[str(shape)], indexDict[str(shape)], 1)})
-    await after_index_change(str(shape))
+    #indexDict.update({str(shape): await index_change_operation(dictionary[str(shape)], indexDict[str(shape)], 1)})
+    #await after_index_change(str(shape))
 
 async def squareMinus(ev):
     indexDict.update({"square": await index_change_operation(dictionary["square"], indexDict["square"], -1)})
