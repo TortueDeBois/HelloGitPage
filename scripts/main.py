@@ -116,12 +116,12 @@ def change_seed_in_seed_area():
 
 # Buttons
 async def plus(event):
-    shape = set(event.target.className.split(' ')) & set(order)[0]
+    shape = list(set(event.target.className.split(' ')) & set(order))[0]
     indexDict.update({str(shape): await index_change_operation(dictionary[str(shape)], indexDict[str(shape)], 1)})
     await after_index_change(str(shape))
 
 async def minus(event):
-    shape = set(event.target.className.split(' ')) & set(order)[0]
+    shape = list(set(event.target.className.split(' ')) & set(order))[0]
     indexDict.update({str(shape): await index_change_operation(dictionary[str(shape)], indexDict[str(shape)], -1)})
     await after_index_change(str(shape))
 
