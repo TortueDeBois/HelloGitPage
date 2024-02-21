@@ -1,6 +1,7 @@
 from js import File, Uint8Array, window, navigator, event
 import js
 from io import BytesIO
+import random
 import json
 import sys
 import os
@@ -160,6 +161,10 @@ def dl_preview(ev):
     hidden_a.setAttribute('href', url)
     hidden_a.setAttribute('download', "new_image.png")
     hidden_a.click()
+
+def randomize(ev):
+    for value in order:
+        indexDict.update({str(value): random.randrange(len(dictionary[str(value)]))})
 
 # display index
 def displayIndex(shape):
