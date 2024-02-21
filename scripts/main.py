@@ -115,7 +115,7 @@ def change_seed_in_seed_area():
     textElement.innerText = seed
 
 # Buttons
-async def plus(ev, shape):
+async def plus(shape):
     print(shape)
     #indexDict.update({str(shape): await index_change_operation(dictionary[str(shape)], indexDict[str(shape)], 1)})
     #await after_index_change(str(shape))
