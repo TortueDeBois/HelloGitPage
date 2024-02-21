@@ -116,9 +116,14 @@ def change_seed_in_seed_area():
 
 # Buttons
 async def plus(event):
-    print(event.target.className in order)
+    print(event.target.className.split(' ') in order)
     #indexDict.update({str(shape): await index_change_operation(dictionary[str(shape)], indexDict[str(shape)], 1)})
     #await after_index_change(str(shape))
+
+def class_in_common(array1, array2):
+    
+
+    return None
 
 async def squareMinus(ev):
     indexDict.update({"square": await index_change_operation(dictionary["square"], indexDict["square"], -1)})
