@@ -125,23 +125,6 @@ async def minus(event):
     indexDict.update({str(shape): await index_change_operation(dictionary[str(shape)], indexDict[str(shape)], -1)})
     await after_index_change(str(shape))
 
-
-async def squareMinus(ev):
-    indexDict.update({"square": await index_change_operation(dictionary["square"], indexDict["square"], -1)})
-    await after_index_change("square")
-    
-async def squarePlus(ev):
-    indexDict.update({"square": await index_change_operation(dictionary["square"], indexDict["square"], 1)})
-    await after_index_change("square")
-
-async def triangleMinus(ev):
-    indexDict.update({"triangle": await index_change_operation(dictionary["triangle"], indexDict["triangle"], -1)})
-    await after_index_change("triangle")
-
-async def trianglePlus(ev):
-    indexDict.update({"triangle": await index_change_operation(dictionary["triangle"], indexDict["triangle"], 1)})
-    await after_index_change("triangle")
-
 async def index_change_operation(dictionary, index, operation):
     index += operation
     if operation < 0 and index < 0 :
