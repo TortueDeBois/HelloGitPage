@@ -1,4 +1,4 @@
-from js import File, Uint8Array, window, navigator
+from js import File, Uint8Array, window, navigator, event
 import js
 from io import BytesIO
 import json
@@ -115,8 +115,8 @@ def change_seed_in_seed_area():
     textElement.innerText = seed
 
 # Buttons
-async def plus(shape):
-    print(shape)
+async def plus(event):
+    print(event)
     #indexDict.update({str(shape): await index_change_operation(dictionary[str(shape)], indexDict[str(shape)], 1)})
     #await after_index_change(str(shape))
 
