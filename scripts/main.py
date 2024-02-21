@@ -162,9 +162,10 @@ def dl_preview(ev):
     hidden_a.setAttribute('download', "new_image.png")
     hidden_a.click()
 
-def randomize(ev):
+async def randomize(ev):
     for value in order:
         indexDict.update({str(value): random.randrange(len(dictionary[str(value)]))})
+        await after_index_change(value)
 
 # display index
 def displayIndex(shape):
